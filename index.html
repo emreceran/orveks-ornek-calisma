@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="tr"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ORVEKS Örnek Çalışma</title>
+<meta name="description" content="Aynı şirket, aynı altı ay: yalnız mizandan mali analiz ile ERP + CRM + MES verisiyle entegre performans analizi. Kurgusal şirket üzerinde örnek çalışma.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#f5f6f8; --yuz:#fff; --ink:#15202b; --ink2:#4a5663; --muted:#7a8591; --cizgi:#dde2e8;
+  --lac:#0f2a44; --c1:#2d6aa6; --c2:#d9822b; --c3:#a9b8c8; --kt:#c0392b; --iy:#1e8a5a; --soft:#eef2f6; --hero:#0f2a44; --heroink:#fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#0e141b; --yuz:#161e27; --ink:#e6ebf0; --ink2:#a9b4bf; --muted:#7f8b97; --cizgi:#27323e;
+  --lac:#9cc3ea; --c1:#5b9bd8; --c2:#f0a050; --c3:#3e4d5d; --kt:#ff7a6b; --iy:#4cc38a; --soft:#1c2631; --hero:#0a1928; --heroink:#e6ebf0; } }
+:root[data-theme="dark"] { --bg:#0e141b; --yuz:#161e27; --ink:#e6ebf0; --ink2:#a9b4bf; --muted:#7f8b97; --cizgi:#27323e;
+  --lac:#9cc3ea; --c1:#5b9bd8; --c2:#f0a050; --c3:#3e4d5d; --kt:#ff7a6b; --iy:#4cc38a; --soft:#1c2631; --hero:#0a1928; --heroink:#e6ebf0; }
+* { box-sizing:border-box }
+html { scroll-behavior:smooth }
+body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.6 "IBM Plex Sans",system-ui,sans-serif; }
+a { color:var(--c1) }
+.w { max-width:1180px; margin:0 auto; padding:0 20px }
+header.ust { position:sticky; top:0; z-index:10; background:color-mix(in srgb,var(--bg) 88%,transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--cizgi) }
+header.ust .w { display:flex; align-items:center; gap:18px; height:56px }
+.logo { font-weight:700; letter-spacing:.14em; color:var(--lac); text-decoration:none }
+nav { display:flex; gap:16px; margin-left:auto; font-size:14px }
+nav a { color:var(--ink2); text-decoration:none } nav a:hover { color:var(--ink) }
+#tema { border:1px solid var(--cizgi); background:var(--yuz); color:var(--ink2); border-radius:8px; padding:5px 9px; cursor:pointer; font:inherit; font-size:13px }
+.kurgu { background:var(--c2); color:#1b1204; font-size:13px; text-align:center; padding:6px 12px; font-weight:500 }
+.hero { background:var(--hero); color:var(--heroink); padding:72px 0 64px }
+.hero small { letter-spacing:.14em; text-transform:uppercase; opacity:.75; font-size:12.5px }
+.hero h1 { font-size:clamp(30px,4.6vw,50px); line-height:1.12; margin:12px 0 18px; max-width:880px; font-weight:700 }
+.hero p { max-width:720px; font-size:17px; opacity:.9; margin:0 0 28px }
+.btn { display:inline-block; padding:11px 18px; border-radius:9px; background:var(--c2); color:#1b1204; text-decoration:none; font-weight:600; margin:0 8px 8px 0 }
+.btn.ikincil { background:transparent; color:var(--heroink); border:1px solid rgba(255,255,255,.35) }
+.firma { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,.15); border-radius:10px; overflow:hidden; margin-top:40px; max-width:880px }
+.firma div { background:var(--hero); padding:14px 16px } .firma b { display:block; font-size:22px } .firma span { font-size:13px; opacity:.75 }
+section.blok { padding:64px 0 }
+h2 { font-size:clamp(24px,3vw,32px); margin:0 0 8px; color:var(--lac); line-height:1.2 }
+.alt { color:var(--ink2); max-width:760px; margin:0 0 28px; font-size:16px }
+.dunyalar { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:26px }
+.dunya { background:var(--yuz); border:1px solid var(--cizgi); border-radius:14px; padding:22px 24px; border-top:4px solid var(--c3) }
+.dunya.b { border-top-color:var(--c2) }
+.dunya h3 { margin:0 0 4px; font-size:18px } .dunya .k { font:500 12px "IBM Plex Mono",monospace; color:var(--muted) }
+.dunya ul { margin:12px 0 0; padding-left:18px; color:var(--ink2) }
+.karsi { width:100%; border-collapse:collapse; background:var(--yuz); border:1px solid var(--cizgi); border-radius:14px; overflow:hidden }
+.karsi th,.karsi td { padding:11px 14px; border-bottom:1px solid var(--cizgi); text-align:left; vertical-align:top; font-size:14px }
+.karsi thead th { background:var(--soft); font-size:12.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink2) }
+.karsi tbody th { color:var(--lac); white-space:nowrap } .karsi td:nth-child(2) { color:var(--muted) }
+.pano { background:var(--soft); }
+.sekmeler { display:flex; gap:6px; overflow-x:auto; padding-bottom:6px; margin-bottom:18px; scrollbar-width:thin }
+.sekmeler button { flex:0 0 auto; border:1px solid var(--cizgi); background:var(--yuz); color:var(--ink2); padding:8px 14px; border-radius:999px; cursor:pointer; font:inherit; font-size:14px }
+.sekmeler button[aria-selected="true"] { background:var(--lac); color:var(--bg); border-color:var(--lac) }
+.kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:14px }
+.kpi { background:var(--yuz); border:1px solid var(--cizgi); border-radius:12px; padding:14px 16px; border-left:4px solid var(--c1) }
+.kpi.kotu { border-left-color:var(--c2) }
+.kpi span { display:block; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em }
+.kpi b { display:block; font-size:25px; margin:3px 0 1px; color:var(--ink); font-variant-numeric:tabular-nums }
+.kpi em { display:block; font-style:normal; font-size:13px; color:var(--ink2); line-height:1.4 }
+.iki { display:grid; grid-template-columns:1fr 1fr; gap:14px }
+.kart { background:var(--yuz); border:1px solid var(--cizgi); border-radius:12px; padding:18px 20px; min-width:0 }
+.kart h4 { margin:0 0 10px; font-size:15px }
+.not { font-size:13px; color:var(--muted); margin:10px 0 0 }
+svg.graf { width:100%; height:auto; display:block; overflow:visible }
+svg .c1 { fill:var(--c1) } svg .c2 { fill:var(--c2) } svg .c3 { fill:var(--c3) }
+svg .dv { font:600 14.5px "IBM Plex Sans",sans-serif; fill:var(--ink) }
+svg .ax,svg .bl { font:14.5px "IBM Plex Sans",sans-serif; fill:var(--ink2) }
+svg .hedef { stroke:var(--iy); stroke-dasharray:5 4; stroke-width:1.5 } svg .ht { font:13.5px sans-serif; fill:var(--iy) }
+.tw { overflow-x:auto }
+.tw table { width:100%; border-collapse:collapse; font-size:13.5px; font-variant-numeric:tabular-nums }
+.tw th { text-align:left; font-size:12px; color:var(--muted); font-weight:500; border-bottom:1px solid var(--cizgi); padding:6px 8px; white-space:nowrap }
+.tw td { border-bottom:1px solid var(--cizgi); padding:7px 8px; vertical-align:top }
+.tw .r { text-align:right; white-space:nowrap } .tw small { color:var(--ink2) }
+.nw { white-space:nowrap } .kt { color:var(--kt) } .iy { color:var(--iy) }
+.bar { display:inline-block; width:52px; height:7px; background:var(--soft); border-radius:4px; margin-right:6px; vertical-align:middle; overflow:hidden }
+.bar i { display:block; height:100% } .bar i.c1 { background:var(--c1) } .bar i.c2 { background:var(--c2) }
+.zincirler { display:grid; gap:14px }
+.zincir { background:var(--yuz); border:1px solid var(--cizgi); border-radius:12px; padding:16px 18px }
+.zincir h3 { margin:0 0 12px; font-size:16px; display:flex; align-items:center; gap:10px }
+.zincir h3 i { font-style:normal; width:26px; height:26px; border-radius:50%; background:var(--lac); color:var(--bg); display:grid; place-items:center; font-size:13px }
+.zincir ol { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(5,1fr); gap:8px; counter-reset:z }
+.zincir li { position:relative; background:var(--soft); border-radius:8px; padding:10px 12px; border-top:3px solid var(--c1) }
+.zincir li:last-child { border-top-color:var(--c2) }
+.zincir li:not(:last-child)::after { content:"→"; position:absolute; right:-9px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:14px }
+.zincir li b { display:block; font-size:13.5px; color:var(--lac) } .zincir li span { font-size:13px; color:var(--ink2) }
+.etki { width:100%; border-collapse:collapse; background:var(--yuz); border:1px solid var(--cizgi); border-radius:12px; overflow:hidden; margin-top:24px; font-size:14px }
+.etki th,.etki td { padding:10px 14px; border-bottom:1px solid var(--cizgi); text-align:left }
+.etki thead th { background:var(--soft); font-size:12px; text-transform:uppercase; color:var(--ink2); letter-spacing:.05em }
+.etki small { font-size:13px; color:var(--ink2) } .etki .r { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums }
+.belgeler { display:grid; grid-template-columns:repeat(3,1fr); gap:14px }
+.belge { display:flex; gap:14px; background:var(--yuz); border:1px solid var(--cizgi); border-radius:12px; padding:18px; text-decoration:none; color:var(--ink); transition:border-color .15s }
+.belge:hover { border-color:var(--c1) }
+.belge i { font-style:normal; flex:0 0 46px; height:58px; border-radius:6px; display:grid; place-items:center; font-weight:700; background:var(--c3); color:var(--ink) }
+.belge i.b { background:var(--c2); color:#1b1204 }
+.belge b { display:block; font-size:16px } .rozet { font:500 11.5px "IBM Plex Mono",monospace; color:var(--muted) }
+.belge p { margin:6px 0 0; font-size:13.5px; color:var(--ink2) }
+.gelen { margin-top:22px; background:var(--yuz); border:1px dashed var(--cizgi); border-radius:12px; padding:16px 20px }
+.gelen h4 { margin:0 0 4px } .gelen p { margin:0 0 8px; color:var(--ink2); font-size:14px }
+.gelen ul { margin:0; padding:0; list-style:none; columns:2; font-size:14px }
+.gelen li { padding:3px 0; break-inside:avoid } .gelen li span { color:var(--muted); font-size:12.5px; margin-left:8px }
+.adimlar { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; counter-reset:a }
+.adim { background:var(--yuz); border:1px solid var(--cizgi); border-radius:12px; padding:18px }
+.adim::before { counter-increment:a; content:counter(a); font:600 13px "IBM Plex Mono",monospace; color:var(--c2) }
+.adim h4 { margin:6px 0 6px } .adim p { margin:0; font-size:14px; color:var(--ink2) }
+footer { border-top:1px solid var(--cizgi); padding:28px 0 40px; color:var(--muted); font-size:13.5px }
+footer b { color:var(--ink) }
+@media (max-width:900px) {
+  .kpis { grid-template-columns:1fr 1fr } .iki,.dunyalar,.belgeler { grid-template-columns:1fr }
+  .adimlar { grid-template-columns:1fr 1fr } .firma { grid-template-columns:1fr 1fr }
+  .zincir ol { grid-template-columns:1fr } .zincir li:not(:last-child)::after { content:"↓"; right:auto; left:50%; top:auto; bottom:-15px; transform:none }
+  nav { display:none } .gelen ul { columns:1 } }
+@media (max-width:520px) { .gw { overflow-x:auto } .gw svg { min-width:500px } .w { padding:0 16px } .kpi b { font-size:21px } .adimlar { grid-template-columns:1fr }
+  .karsi th,.karsi td { padding:9px 10px; font-size:13px } .karsi tbody th { white-space:normal } section.blok { padding:48px 0 } }
+</style>
+</head><body>
+<div class="kurgu">Örnek çalışma — kurgusal şirket. ORVEKS, bayileri, tedarikçileri ve bütün rakamlar uydurmadır.</div>
+<header class="ust"><div class="w">
+ <a class="logo" href="#">ORVEKS</a>
+ <nav><a href="#iki-bakis">İki bakış</a><a href="#pano">Pano</a><a href="#zincir">Kök nedenler</a><a href="#belgeler">Belgeler</a><a href="#nasil">Nasıl çalışıyoruz</a></nav>
+ <button id="tema" type="button" aria-label="Tema değiştir">◐ Tema</button>
+</div></header>
+
+<div class="hero"><div class="w">
+ <small>Finans ve sistem danışmanlığı · örnek çalışma</small>
+ <h1>Aynı şirket, aynı altı ay: iki farklı bakış.</h1>
+ <p>Önce yalnızca <b>mizan ve yevmiyeyle</b> bir tarım makinesi üreticisini inceledik: 12 bulgu, 10 cevapsız soru. Sonra aynı dönemi
+ <b>ERP, CRM, MRP ve MES</b> verisiyle yeniden ele aldık: her sorunun cevabı, kayıt numarasına kadar.</p>
+ <a class="btn" href="#pano">Panoyu incele</a><a class="btn ikincil" href="#belgeler">Raporları indir</a>
+ <div class="firma">
+  <div><b>142</b><span>çalışan · Konya 1. OSB</span></div>
+  <div><b>9</b><span>model tarım makinesi</span></div>
+  <div><b>34</b><span>bayi + ihracat (EUR)</span></div>
+  <div><b>407 M TL</b><span>net satış, Oca–Haz 2026</span></div>
+ </div>
+</div></div>
+
+<section class="blok" id="iki-bakis"><div class="w">
+ <h2>Mizan “ne oluyor”u söyler; sistem verisi “neden”i.</h2>
+ <p class="alt">İki çalışma da aynı simülasyondan çıkan aynı olayları inceliyor. Fark, elimizdeki veride.</p>
+ <div class="dunyalar">
+  <div class="dunya"><span class="k">A1 + A2 · yalnız muhasebe</span><h3>Mali analiz ve çözüm reçetesi</h3>
+   <ul><li>Yarı mamul 39,6 M TL → 84,6 M TL; neden bilinmiyor</li>
+   <li>Finansman gideri faaliyet kârının %78’ini yiyor</li>
+   <li>47,5 M TL yatırım aktifleştirilmemiş, amortisman eksik</li>
+   <li>8,9 M TL protestolu senet, karşılık yok</li>
+   <li>Yazılımsız şirkete ERP + MRP + MES + CRM kurulum reçetesi</li></ul></div>
+  <div class="dunya b"><span class="k">B1 · ERP + CRM + MRP + MES</span><h3>Entegre performans raporu</h3>
+   <ul><li>Yarı mamulün 35,7 M TL’si anormal; beş sınıfa, iş emrine kadar</li>
+   <li>Zamanında teslim %72,4; kök neden redüktör tedarik süresi</li>
+   <li>YKM-16 reçetesinde eski parça: maliyet ve garanti zinciri</li>
+   <li>4 bayiye limit üstü sevk; ERP’de blokaj yok</li>
+   <li>Üç sistemler arası kopukluk: CRM→ERP, sevk→fatura, MES→ERP</li></ul></div>
+ </div>
+ <table class="karsi"><thead><tr><th>Konu</th><th>Yalnız muhasebe</th><th>ERP + CRM + MES</th></tr></thead><tbody><tr><th>Yarı mamul</th><td>İki katına çıktı; nedeni tahmin</td><td>Beş sınıfa ayrıldı; 35,7 M TL anormal, iş emri listesiyle</td></tr><tr><th>Yeni yatırımlar</th><td>Aktifleştirilmemiş olabilir</td><td>Devreye alma tarihi MES’ten kesin</td></tr><tr><th>Mamul eksi bakiye</th><td>Üretim girişi eksik olabilir</td><td>17 makine, iş emri numaralarıyla</td></tr><tr><th>Teslim</th><td>Görünmüyor</td><td>Zamanında %72,4; gecikme nedeni ayrımı</td></tr><tr><th>Kârlılık</th><td>Toplam brüt marj</td><td>Model, kanal, müşteri; standart–gerçek sapma; BOM hatası</td></tr><tr><th>Satış kaybı</th><td>Görünmüyor</td><td>Kayıp nedeni; teslim süresi kaybı 217,5 M TL</td></tr><tr><th>Bayi riski</th><td>Protestodan sonra</td><td>Sevk anında; limit aşımı listesi</td></tr><tr><th>Makine</th><td>Görünmüyor</td><td>OEE, darboğaz, duruş nedeni</td></tr></tbody></table>
+</div></section>
+
+<section class="blok pano" id="pano"><div class="w">
+ <h2>Entegre performans panosu</h2>
+ <p class="alt">B1 raporunun verisi. Her rakam ERP, CRM veya MES kaydına bağlıdır; mizanla mutabakatı yapılmıştır.</p>
+ <div class="sekmeler" role="tablist"><button role="tab" data-s="ozet" aria-selected="true">Özet</button><button role="tab" data-s="teslim" aria-selected="false">Teslim</button><button role="tab" data-s="uretim" aria-selected="false">Üretim · OEE</button><button role="tab" data-s="ym" aria-selected="false">Yarı mamul</button><button role="tab" data-s="karlilik" aria-selected="false">Kârlılık</button><button role="tab" data-s="satis" aria-selected="false">Satış · CRM</button><button role="tab" data-s="stok" aria-selected="false">Stok · tedarik</button><button role="tab" data-s="bayi" aria-selected="false">Bayi · garanti</button><button role="tab" data-s="mutabakat" aria-selected="false">Mutabakat</button></div>
+ <section class="panel" id="p-ozet" role="tabpanel">
+<div class="kpis">
+ <div class="kpi "><span>Net satış</span><b>407,3 M</b><em>TL, 6 ay</em></div>
+ <div class="kpi "><span>Brüt marj</span><b>%23,1</b><em>faaliyet kârı %9,9</em></div>
+ <div class="kpi kotu"><span>Finansman gideri</span><b>31,7 M</b><em>satışın %7,8’i</em></div>
+ <div class="kpi "><span>Olağan kâr</span><b>%3,5</b><em>14,3 M TL</em></div>
+ <div class="kpi kotu"><span>Zamanında teslim</span><b>%72,4</b><em>gecikende ort. 18 gün</em></div>
+ <div class="kpi kotu"><span>Filo OEE</span><b>%65,9</b><em>darboğaz: BOY-01, KYN-R1</em></div>
+ <div class="kpi kotu"><span>Yarı mamulde anormal</span><b>35,7 M</b><em>84,6 M’nin %42’i</em></div>
+ <div class="kpi "><span>Teklif kazanma</span><b>%29,9</b><em>1028 fırsat</em></div>
+</div>
+<div class="iki">
+ <div class="kart"><h4>Zamanında teslim, aylık</h4><div class="gw"><svg viewBox="0 0 640 210" class="graf" role="img"><line x1="8" x2="632" y1="43.1" y2="43.1" class="hedef"/><text x="632" y="38.1" text-anchor="end" class="ht">hedef 85%</text><rect x="29.8" y="22.0" width="60.3" height="162.0" rx="3" class="c1"><title>Oca: 98%</title></rect><text x="60.0" y="16.0" text-anchor="middle" class="dv">98%</text><text x="60.0" y="202" text-anchor="middle" class="ax">Oca</text><rect x="133.8" y="26.6" width="60.3" height="157.4" rx="3" class="c1"><title>Şub: 95%</title></rect><text x="164.0" y="20.6" text-anchor="middle" class="dv">95%</text><text x="164.0" y="202" text-anchor="middle" class="ax">Şub</text><rect x="237.8" y="68.6" width="60.3" height="115.4" rx="3" class="c2"><title>Mar: 70%</title></rect><text x="268.0" y="62.6" text-anchor="middle" class="dv">70%</text><text x="268.0" y="202" text-anchor="middle" class="ax">Mar</text><rect x="341.8" y="69.6" width="60.3" height="114.4" rx="3" class="c2"><title>Nis: 69%</title></rect><text x="372.0" y="63.6" text-anchor="middle" class="dv">69%</text><text x="372.0" y="202" text-anchor="middle" class="ax">Nis</text><rect x="445.8" y="77.1" width="60.3" height="106.9" rx="3" class="c2"><title>May: 64%</title></rect><text x="476.0" y="71.1" text-anchor="middle" class="dv">64%</text><text x="476.0" y="202" text-anchor="middle" class="ax">May</text><rect x="549.8" y="111.9" width="60.3" height="72.1" rx="3" class="c2"><title>Haz: 44%</title></rect><text x="580.0" y="105.9" text-anchor="middle" class="dv">44%</text><text x="580.0" y="202" text-anchor="middle" class="ax">Haz</text></svg></div>
+  <p class="not">Mart’tan itibaren sezon yükü darboğaza bindi; haziranda sevklerin yarısından azı zamanında.</p></div>
+ <div class="kart"><h4>Kayıp tekliflerin nedeni (teklif tutarı, M TL)</h4>
+  <div class="gw"><svg viewBox="0 0 640 184" class="graf" role="img"><text x="180" y="21" text-anchor="end" class="bl">Fiyat</text><rect x="190" y="8" width="360.0" height="18" rx="3" class="c1"><title>Fiyat: 341 M</title></rect><text x="557.0" y="21.5" class="dv">341 M</text><text x="180" y="51" text-anchor="end" class="bl">Teslim süresi</text><rect x="190" y="38" width="229.6" height="18" rx="3" class="c2"><title>Teslim süresi: 217 M</title></rect><text x="426.6" y="51.5" class="dv">217 M</text><text x="180" y="81" text-anchor="end" class="bl">Rakip ürün / marka</text><rect x="190" y="68" width="173.4" height="18" rx="3" class="c1"><title>Rakip ürün / marka: 164 M</title></rect><text x="370.4" y="81.5" class="dv">164 M</text><text x="180" y="111" text-anchor="end" class="bl">Finansman / vade</text><rect x="190" y="98" width="139.6" height="18" rx="3" class="c1"><title>Finansman / vade: 132 M</title></rect><text x="336.6" y="111.5" class="dv">132 M</text><text x="180" y="141" text-anchor="end" class="bl">Diğer</text><rect x="190" y="128" width="83.5" height="18" rx="3" class="c1"><title>Diğer: 79 M</title></rect><text x="280.5" y="141.5" class="dv">79 M</text><text x="180" y="171" text-anchor="end" class="bl">Proje iptal / ertelendi</text><rect x="190" y="158" width="71.0" height="18" rx="3" class="c1"><title>Proje iptal / ertelendi: 67 M</title></rect><text x="268.0" y="171.5" class="dv">67 M</text></svg></div>
+  <p class="not">“Teslim süresi” fiyattan sonra ikinci sırada ve yalnız üretim + planlamayla çözülebilir.</p></div>
+</div></section><section class="panel" id="p-teslim" role="tabpanel" hidden>
+<div class="kpis">
+ <div class="kpi "><span>Sevk</span><b>286</b><em>435 makine</em></div>
+ <div class="kpi kotu"><span>Zamanında</span><b>%72,4</b><em>hedef %85</em></div>
+ <div class="kpi "><span>Medyan gecikme</span><b>13 gün</b><em>ortalama 17,8 gün</em></div>
+ <div class="kpi kotu"><span>Bekleyen sipariş</span><b>25 makine</b><em>35,0 M TL; 23 makinenin sözü geçmiş</em></div>
+</div>
+<div class="iki">
+ <div class="kart"><h4>Ürün ailesine göre zamanında teslim</h4>
+  <div class="gw"><svg viewBox="0 0 640 124" class="graf" role="img"><text x="140" y="21" text-anchor="end" class="bl">DSK</text><rect x="150" y="8" width="376.8" height="18" rx="3" class="c1"><title>DSK: 94,2%</title></rect><text x="533.8" y="21.5" class="dv">94,2%</text><text x="140" y="51" text-anchor="end" class="bl">PEM</text><rect x="150" y="38" width="320.0" height="18" rx="3" class="c1"><title>PEM: 80,0%</title></rect><text x="477.0" y="51.5" class="dv">80,0%</text><text x="140" y="81" text-anchor="end" class="bl">SLJ</text><rect x="150" y="68" width="312.4" height="18" rx="3" class="c1"><title>SLJ: 78,1%</title></rect><text x="469.4" y="81.5" class="dv">78,1%</text><text x="140" y="111" text-anchor="end" class="bl">YKM</text><rect x="150" y="98" width="167.2" height="18" rx="3" class="c2"><title>YKM: 41,8%</title></rect><text x="324.2" y="111.5" class="dv">41,8%</text></svg></div>
+  <p class="not">YKM = yem karma mikseri; redüktör bekleyen aile.</p></div>
+ <div class="kart"><h4>Gecikmenin nedeni (geciken sevklerin payı)</h4>
+  <div class="gw"><svg viewBox="0 0 640 94" class="graf" role="img"><text x="220" y="21" text-anchor="end" class="bl">Üretim: darboğaz kuyruğu</text><rect x="230" y="8" width="186.2" height="18" rx="3" class="c2"><title>Üretim: darboğaz kuyruğu: 58,2%</title></rect><text x="423.2" y="21.5" class="dv">58,2%</text><text x="220" y="51" text-anchor="end" class="bl">Stok / sevk planlama</text><rect x="230" y="38" width="77.1" height="18" rx="3" class="c1"><title>Stok / sevk planlama: 24,1%</title></rect><text x="314.1" y="51.5" class="dv">24,1%</text><text x="220" y="81" text-anchor="end" class="bl">Malzeme: redüktör eksikliği</text><rect x="230" y="68" width="56.6" height="18" rx="3" class="c1"><title>Malzeme: redüktör eksikliği: 17,7%</title></rect><text x="293.6" y="81.5" class="dv">17,7%</text></svg></div>
+  <h4 style="margin-top:18px">Akış süresi: plan ve gerçek (gün)</h4>
+  <div class="gw"><svg viewBox="0 0 640 214" class="graf" role="img"><rect x="120" y="4" width="11" height="11" rx="2" class="c3"/><text x="136" y="14" class="ax">plan</text><rect x="250" y="4" width="11" height="11" rx="2" class="c2"/><text x="266" y="14" class="ax">gerçek</text><text x="110" y="50" text-anchor="end" class="bl">DSK</text><rect x="120" y="32" width="94.4" height="15" rx="3" class="c3"/><text x="221.4" y="44" class="dv">8,4 g</text><rect x="120" y="50" width="223.0" height="15" rx="3" class="c2"/><text x="350.0" y="62" class="dv">19,8 g</text><text x="110" y="96" text-anchor="end" class="bl">PEM</text><rect x="120" y="78" width="161.3" height="15" rx="3" class="c3"/><text x="288.3" y="90" class="dv">14,4 g</text><rect x="120" y="96" width="297.3" height="15" rx="3" class="c2"/><text x="424.3" y="108" class="dv">26,5 g</text><text x="110" y="142" text-anchor="end" class="bl">SLJ</text><rect x="120" y="124" width="126.9" height="15" rx="3" class="c3"/><text x="253.9" y="136" class="dv">11,3 g</text><rect x="120" y="142" width="246.0" height="15" rx="3" class="c2"/><text x="373.0" y="154" class="dv">21,9 g</text><text x="110" y="188" text-anchor="end" class="bl">YKM</text><rect x="120" y="170" width="203.4" height="15" rx="3" class="c3"/><text x="330.4" y="182" class="dv">18,1 g</text><rect x="120" y="188" width="430.0" height="15" rx="3" class="c2"/><text x="557.0" y="200" class="dv">38,3 g</text></svg></div></div>
+</div></section><section class="panel" id="p-uretim" role="tabpanel" hidden>
+<div class="kpis">
+ <div class="kpi kotu"><span>Filo OEE</span><b>%65,9</b><em>dünya sınıfı ~%85</em></div>
+ <div class="kpi "><span>Duruş</span><b>1.057 saat</b><em>plansız, 6 ay</em></div>
+ <div class="kpi kotu"><span>İşçilik kaydı</span><b>%75,0</b><em>bordronun iş kartına düşen payı; 19.947 saat kayıtsız</em></div>
+ <div class="kpi "><span>Kalite maliyeti</span><b>1,21 M</b><em>310 saat yeniden işleme</em></div>
+</div>
+<div class="iki">
+ <div class="kart"><h4>İş merkezine göre OEE ve doluluk</h4>
+  <div class="tw"><table><thead><tr><th class="">İş merkezi</th><th class="r">Kull.</th><th class="r">Perf.</th><th class="r">Kalite</th><th class="r">OEE</th><th class="">Doluluk</th></tr></thead><tbody><tr><td class=""><b>KYN-R2</b><br><small>Robot Kaynak Hücresi 2 (yeni)</small></td><td class="r">%88</td><td class="r">%69</td><td class="r">%93</td><td class="r"><b class="kt">%55,9</b></td><td class=""><span class="nw"><span class="bar"><i style="width:77%" class="c2"></i></span>%77</span></td></tr><tr><td class=""><b>LZR-02</b><br><small>Fiber Lazer 12 kW (yeni)</small></td><td class="r">%79</td><td class="r">%79</td><td class="r">%97</td><td class="r"><b class="kt">%60,2</b></td><td class=""><span class="nw"><span class="bar"><i style="width:37%" class="c1"></i></span>%37</span></td></tr><tr><td class=""><b>KYN-R1</b><br><small>Robot Kaynak Hücresi 1</small></td><td class="r">%85</td><td class="r">%77</td><td class="r">%93</td><td class="r"><b class="kt">%60,5</b></td><td class=""><span class="nw"><span class="bar"><i style="width:84%" class="c2"></i></span>%84</span></td></tr><tr><td class=""><b>ABK-01</b><br><small>Abkant Pres 220 t</small></td><td class="r">%78</td><td class="r">%85</td><td class="r">%99</td><td class="r"><b class="">%65,8</b></td><td class=""><span class="nw"><span class="bar"><i style="width:26%" class="c1"></i></span>%26</span></td></tr><tr><td class=""><b>BOY-01</b><br><small>Toz Boya Hattı</small></td><td class="r">%86</td><td class="r">%81</td><td class="r">%95</td><td class="r"><b class="">%66,0</b></td><td class=""><span class="nw"><span class="bar"><i style="width:86%" class="c2"></i></span>%86</span></td></tr><tr><td class=""><b>ABK-02</b><br><small>Abkant Pres 135 t</small></td><td class="r">%80</td><td class="r">%84</td><td class="r">%99</td><td class="r"><b class="">%66,5</b></td><td class=""><span class="nw"><span class="bar"><i style="width:44%" class="c1"></i></span>%44</span></td></tr><tr><td class=""><b>TLS-01</b><br><small>CNC Torna</small></td><td class="r">%81</td><td class="r">%87</td><td class="r">%98</td><td class="r"><b class="">%69,1</b></td><td class=""><span class="nw"><span class="bar"><i style="width:38%" class="c1"></i></span>%38</span></td></tr><tr><td class=""><b>TLS-02</b><br><small>CNC Dik İşlem</small></td><td class="r">%84</td><td class="r">%85</td><td class="r">%98</td><td class="r"><b class="">%70,6</b></td><td class=""><span class="nw"><span class="bar"><i style="width:59%" class="c1"></i></span>%59</span></td></tr><tr><td class=""><b>LZR-01</b><br><small>Fiber Lazer 6 kW</small></td><td class="r">%87</td><td class="r">%89</td><td class="r">%99</td><td class="r"><b class="">%76,4</b></td><td class=""><span class="nw"><span class="bar"><i style="width:40%" class="c1"></i></span>%40</span></td></tr></tbody></table></div>
+  <p class="not">Doluluğu %75’i aşan üç merkez (boya, robot kaynak 1–2) darboğaz. Yeni lazer %37 dolu — kapasite var, akış yok.</p></div>
+ <div class="kart"><h4>Duruş nedenleri (pay)</h4>
+  <div class="gw"><svg viewBox="0 0 640 244" class="graf" role="img"><text x="210" y="21" text-anchor="end" class="bl">Malzeme bekleme</text><rect x="220" y="8" width="330.0" height="18" rx="3" class="c2"><title>Malzeme bekleme: 34,3%</title></rect><text x="557.0" y="21.5" class="dv">34,3%</text><text x="210" y="51" text-anchor="end" class="bl">Ayar / model değişimi</text><rect x="220" y="38" width="199.5" height="18" rx="3" class="c1"><title>Ayar / model değişimi: 20,7%</title></rect><text x="426.5" y="51.5" class="dv">20,7%</text><text x="210" y="81" text-anchor="end" class="bl">Arıza</text><rect x="220" y="68" width="154.3" height="18" rx="3" class="c1"><title>Arıza: 16,0%</title></rect><text x="381.3" y="81.5" class="dv">16,0%</text><text x="210" y="111" text-anchor="end" class="bl">Kalite problemi / yeniden işleme</text><rect x="220" y="98" width="85.1" height="18" rx="3" class="c1"><title>Kalite problemi / yeniden işleme: 8,8%</title></rect><text x="312.1" y="111.5" class="dv">8,8%</text><text x="210" y="141" text-anchor="end" class="bl">Planlı bakım aşımı</text><rect x="220" y="128" width="60.0" height="18" rx="3" class="c1"><title>Planlı bakım aşımı: 6,2%</title></rect><text x="287.0" y="141.5" class="dv">6,2%</text><text x="210" y="171" text-anchor="end" class="bl">Operatör yok</text><rect x="220" y="158" width="58.7" height="18" rx="3" class="c1"><title>Operatör yok: 6,1%</title></rect><text x="285.7" y="171.5" class="dv">6,1%</text><text x="210" y="201" text-anchor="end" class="bl">Program / çizim bekleme</text><rect x="220" y="188" width="50.1" height="18" rx="3" class="c1"><title>Program / çizim bekleme: 5,2%</title></rect><text x="277.1" y="201.5" class="dv">5,2%</text><text x="210" y="231" text-anchor="end" class="bl">Diğer</text><rect x="220" y="218" width="25.7" height="18" rx="3" class="c1"><title>Diğer: 2,7%</title></rect><text x="252.7" y="231.5" class="dv">2,7%</text></svg></div>
+  <h4 style="margin-top:18px">Filo OEE, aylık</h4><div class="gw"><svg viewBox="0 0 640 180" class="graf" role="img"><rect x="29.8" y="24.3" width="60.3" height="129.7" rx="3" class="c1"><title>Oca: 66,8%</title></rect><text x="60.0" y="18.3" text-anchor="middle" class="dv">66,8%</text><text x="60.0" y="172" text-anchor="middle" class="ax">Oca</text><rect x="133.8" y="23.2" width="60.3" height="130.8" rx="3" class="c1"><title>Şub: 67,4%</title></rect><text x="164.0" y="17.2" text-anchor="middle" class="dv">67,4%</text><text x="164.0" y="172" text-anchor="middle" class="ax">Şub</text><rect x="237.8" y="25.7" width="60.3" height="128.3" rx="3" class="c1"><title>Mar: 66,1%</title></rect><text x="268.0" y="19.7" text-anchor="middle" class="dv">66,1%</text><text x="268.0" y="172" text-anchor="middle" class="ax">Mar</text><rect x="341.8" y="28.8" width="60.3" height="125.2" rx="3" class="c1"><title>Nis: 64,5%</title></rect><text x="372.0" y="22.8" text-anchor="middle" class="dv">64,5%</text><text x="372.0" y="172" text-anchor="middle" class="ax">Nis</text><rect x="445.8" y="31.9" width="60.3" height="122.1" rx="3" class="c1"><title>May: 62,9%</title></rect><text x="476.0" y="25.9" text-anchor="middle" class="dv">62,9%</text><text x="476.0" y="172" text-anchor="middle" class="ax">May</text><rect x="549.8" y="22.0" width="60.3" height="132.0" rx="3" class="c1"><title>Haz: 68,0%</title></rect><text x="580.0" y="16.0" text-anchor="middle" class="dv">68,0%</text><text x="580.0" y="172" text-anchor="middle" class="ax">Haz</text></svg></div></div>
+</div></section><section class="panel" id="p-ym" role="tabpanel" hidden>
+<div class="kpis">
+ <div class="kpi kotu"><span>Yarı mamul (151)</span><b>84,6 M</b><em>açılış 39,6 M → %114 artış</em></div>
+ <div class="kpi "><span>Açık iş emri</span><b>70</b><em>ERP ile muhasebe birebir tutuyor</em></div>
+ <div class="kpi kotu"><span>Anormal kısım</span><b>35,7 M</b><em>gecikmiş, kalite, MES–ERP, iptal</em></div>
+ <div class="kpi "><span>Redüktör bekleyen</span><b>20 iş emri</b><em>toplam 277 gün bekleme</em></div>
+</div>
+<div class="iki">
+ <div class="kart"><h4>Yarı mamulün bileşimi (M TL)</h4>
+  <div class="gw"><svg viewBox="0 0 640 154" class="graf" role="img"><text x="250" y="21" text-anchor="end" class="bl">Normal akış</text><rect x="260" y="8" width="290.0" height="18" rx="3" class="c1"><title>Normal akış: 48,9 M</title></rect><text x="557.0" y="21.5" class="dv">48,9 M</text><text x="250" y="51" text-anchor="end" class="bl">Gecikmiş akış</text><rect x="260" y="38" width="59.9" height="18" rx="3" class="c2"><title>Gecikmiş akış: 10,1 M</title></rect><text x="326.9" y="51.5" class="dv">10,1 M</text><text x="250" y="81" text-anchor="end" class="bl">MES’te bitmiş, ERP’de stoka alınmamış</text><rect x="260" y="68" width="58.3" height="18" rx="3" class="c2"><title>MES’te bitmiş, ERP’de stoka alınmamış: 9,8 M</title></rect><text x="325.3" y="81.5" class="dv">9,8 M</text><text x="250" y="111" text-anchor="end" class="bl">Kalite / yeniden işleme bekliyor</text><rect x="260" y="98" width="48.9" height="18" rx="3" class="c2"><title>Kalite / yeniden işleme bekliyor: 8,2 M</title></rect><text x="315.9" y="111.5" class="dv">8,2 M</text><text x="250" y="141" text-anchor="end" class="bl">İptal edilmiş, malzemesi iade edilmemiş</text><rect x="260" y="128" width="44.6" height="18" rx="3" class="c2"><title>İptal edilmiş, malzemesi iade edilmemiş: 7,5 M</title></rect><text x="311.6" y="141.5" class="dv">7,5 M</text></svg></div>
+  <p class="not">Mizan tek bir rakam gösterir; iş emri verisi onu beş sınıfa ayırır. Normal akış dışındaki her sınıfın sahibi ve düzeltme yolu farklı.</p></div>
+ <div class="kart"><h4>En eski açık iş emirleri</h4>
+  <div class="tw"><table><thead><tr><th class="">İş emri</th><th class="">Model</th><th class="r">Yaş</th><th class="">Sınıf</th><th class="r">Maliyet</th></tr></thead><tbody><tr><td class="">IE-2026-0052</td><td class="">SLJ-2</td><td class="r">148 g</td><td class=""><small>İptal edilmiş, malzemesi iade edilmemiş</small></td><td class="r">0,49 M</td></tr><tr><td class="">IE-2026-0076</td><td class="">PEM-8</td><td class="r">127 g</td><td class=""><small>İptal edilmiş, malzemesi iade edilmemiş</small></td><td class="r">0,68 M</td></tr><tr><td class="">IE-2026-0097</td><td class="">DSK-32</td><td class="r">113 g</td><td class=""><small>Kalite / yeniden işleme bekliyor</small></td><td class="r">0,75 M</td></tr><tr><td class="">IE-2026-0098</td><td class="">YKM-12</td><td class="r">106 g</td><td class=""><small>Kalite / yeniden işleme bekliyor</small></td><td class="r">0,93 M</td></tr><tr><td class="">IE-2026-0104</td><td class="">SLJ-2</td><td class="r">106 g</td><td class=""><small>İptal edilmiş, malzemesi iade edilmemiş</small></td><td class="r">0,49 M</td></tr><tr><td class="">IE-2026-0107</td><td class="">YKM-16</td><td class="r">99 g</td><td class=""><small>İptal edilmiş, malzemesi iade edilmemiş</small></td><td class="r">1,52 M</td></tr><tr><td class="">IE-2026-0111</td><td class="">SLJ-2</td><td class="r">99 g</td><td class=""><small>MES’te bitmiş, ERP’de stoka alınmamış</small></td><td class="r">1,35 M</td></tr><tr><td class="">IE-2026-0127</td><td class="">PEM-6</td><td class="r">85 g</td><td class=""><small>İptal edilmiş, malzemesi iade edilmemiş</small></td><td class="r">0,54 M</td></tr></tbody></table></div></div>
+</div></section><section class="panel" id="p-karlilik" role="tabpanel" hidden>
+<div class="kpis">
+ <div class="kpi "><span>Brüt marj (ERP)</span><b>%23,7</b><em>makine satışı</em></div>
+ <div class="kpi kotu"><span>En düşük model</span><b>YKM-12</b><em>%19,7 marj</em></div>
+ <div class="kpi kotu"><span>BOM hatası</span><b>YKM-16</b><em>reçetede RDK-140, fiilen RDK-160</em></div>
+ <div class="kpi "><span>Eksik maliyet</span><b>3,87 M</b><em>45 makine × 85.952 TL</em></div>
+</div>
+<div class="iki">
+ <div class="kart"><h4>Modele göre brüt marj</h4>
+  <div class="gw"><svg viewBox="0 0 640 274" class="graf" role="img"><text x="140" y="21" text-anchor="end" class="bl">YKM-12 (24 ad.)</text><rect x="150" y="8" width="288.8" height="18" rx="3" class="c2"><title>YKM-12 (24 ad.): 19,7%</title></rect><text x="445.8" y="21.5" class="dv">19,7%</text><text x="140" y="51" text-anchor="end" class="bl">PEM-6 (38 ad.)</text><rect x="150" y="38" width="303.1" height="18" rx="3" class="c2"><title>PEM-6 (38 ad.): 20,6%</title></rect><text x="460.1" y="51.5" class="dv">20,6%</text><text x="140" y="81" text-anchor="end" class="bl">SLJ-1 (43 ad.)</text><rect x="150" y="68" width="310.5" height="18" rx="3" class="c1"><title>SLJ-1 (43 ad.): 21,1%</title></rect><text x="467.5" y="81.5" class="dv">21,1%</text><text x="140" y="111" text-anchor="end" class="bl">DSK-24 (60 ad.)</text><rect x="150" y="98" width="328.1" height="18" rx="3" class="c1"><title>DSK-24 (60 ad.): 22,3%</title></rect><text x="485.1" y="111.5" class="dv">22,3%</text><text x="140" y="141" text-anchor="end" class="bl">YKM-16 (50 ad.)</text><rect x="150" y="128" width="331.0" height="18" rx="3" class="c1"><title>YKM-16 (50 ad.): 22,5%</title></rect><text x="488.0" y="141.5" class="dv">22,5%</text><text x="140" y="171" text-anchor="end" class="bl">PEM-8 (59 ad.)</text><rect x="150" y="158" width="339.5" height="18" rx="3" class="c1"><title>PEM-8 (59 ad.): 23,1%</title></rect><text x="496.5" y="171.5" class="dv">23,1%</text><text x="140" y="201" text-anchor="end" class="bl">YKM-20 (30 ad.)</text><rect x="150" y="188" width="392.0" height="18" rx="3" class="c1"><title>YKM-20 (30 ad.): 26,7%</title></rect><text x="549.0" y="201.5" class="dv">26,7%</text><text x="140" y="231" text-anchor="end" class="bl">DSK-32 (63 ad.)</text><rect x="150" y="218" width="394.3" height="18" rx="3" class="c1"><title>DSK-32 (63 ad.): 26,9%</title></rect><text x="551.3" y="231.5" class="dv">26,9%</text><text x="140" y="261" text-anchor="end" class="bl">SLJ-2 (60 ad.)</text><rect x="150" y="248" width="400.0" height="18" rx="3" class="c1"><title>SLJ-2 (60 ad.): 27,2%</title></rect><text x="557.0" y="261.5" class="dv">27,2%</text></svg></div>
+  <p class="not">Standart maliyet ile gerçekleşen arasındaki en büyük sapma YKM-16’da: %8,9 — nedeni ürün ağacında kalmış eski redüktör kodu.</p></div>
+ <div class="kart"><h4>Kanal kârlılığı</h4>
+  <div class="tw"><table><thead><tr><th class="">Kanal</th><th class="r">Adet</th><th class="r">Satış</th><th class="r">Brüt kâr</th><th class="r">Marj</th></tr></thead><tbody><tr><td class="">Bayi</td><td class="r">278</td><td class="r">244,2 M</td><td class="r">54,6 M</td><td class="r">%22,4</td></tr><tr><td class="">İhracat</td><td class="r">90</td><td class="r">88,4 M</td><td class="r">22,6 M</td><td class="r">%25,6</td></tr><tr><td class="">Doğrudan</td><td class="r">59</td><td class="r">55,7 M</td><td class="r">14,7 M</td><td class="r">%26,3</td></tr></tbody></table></div>
+  <h4 style="margin-top:18px">En düşük marjlı müşteriler</h4>
+  <div class="tw"><table><thead><tr><th class="">Müşteri</th><th class="">Kanal</th><th class="r">Satış</th><th class="r">Marj</th></tr></thead><tbody><tr><td class=""><small>KIRŞEHIR TARHAN TARIM MAKİNALARI LTD. ŞTİ.</small></td><td class="">Bayi</td><td class="r">7,3 M</td><td class="r">%17,7</td></tr><tr><td class=""><small>NIĞDE UÇAR TARIM MAKİNALARI LTD. ŞTİ.</small></td><td class="">Bayi</td><td class="r">13,5 M</td><td class="r">%18,9</td></tr><tr><td class=""><small>KARAMAN EKINCI TARIM MAKİNALARI LTD. ŞTİ.</small></td><td class="">Bayi</td><td class="r">5,0 M</td><td class="r">%20,2</td></tr><tr><td class=""><small>DEVELI ACAR TARIM MAKİNALARI LTD. ŞTİ.</small></td><td class="">Bayi</td><td class="r">6,5 M</td><td class="r">%20,5</td></tr><tr><td class=""><small>EDIRNE CEYLAN TARIM MAKİNALARI LTD. ŞTİ.</small></td><td class="">Bayi</td><td class="r">9,3 M</td><td class="r">%20,5</td></tr></tbody></table></div></div>
+</div></section><section class="panel" id="p-satis" role="tabpanel" hidden>
+<div class="kpis">
+ <div class="kpi "><span>Fırsat</span><b>1028</b><em>907 kapandı</em></div>
+ <div class="kpi "><span>Kazanma oranı</span><b>%29,9</b><em>Bayi %30 · Doğrudan %31 · İhracat %28</em></div>
+ <div class="kpi kotu"><span>Onaysız iskonto</span><b>79 teklif</b><em>ort. %11,3; 137,6 M TL teklif</em></div>
+ <div class="kpi "><span>Açık huni</span><b>121 fırsat</b><em>236,1 M TL</em></div>
+</div>
+<div class="iki">
+ <div class="kart"><h4>“Teslim süresi” nedeniyle kaybedilen teklifler, aylık (M TL)</h4>
+  <div class="gw"><svg viewBox="0 0 640 210" class="graf" role="img"><rect x="29.8" y="135.2" width="60.3" height="48.8" rx="3" class="c1"><title>Oca: 15,0</title></rect><text x="60.0" y="129.2" text-anchor="middle" class="dv">15,0</text><text x="60.0" y="202" text-anchor="middle" class="ax">Oca</text><rect x="133.8" y="75.0" width="60.3" height="109.0" rx="3" class="c1"><title>Şub: 33,5</title></rect><text x="164.0" y="69.0" text-anchor="middle" class="dv">33,5</text><text x="164.0" y="202" text-anchor="middle" class="ax">Şub</text><rect x="237.8" y="69.7" width="60.3" height="114.3" rx="3" class="c2"><title>Mar: 35,2</title></rect><text x="268.0" y="63.7" text-anchor="middle" class="dv">35,2</text><text x="268.0" y="202" text-anchor="middle" class="ax">Mar</text><rect x="341.8" y="22.0" width="60.3" height="162.0" rx="3" class="c2"><title>Nis: 49,8</title></rect><text x="372.0" y="16.0" text-anchor="middle" class="dv">49,8</text><text x="372.0" y="202" text-anchor="middle" class="ax">Nis</text><rect x="445.8" y="42.6" width="60.3" height="141.4" rx="3" class="c2"><title>May: 43,5</title></rect><text x="476.0" y="36.6" text-anchor="middle" class="dv">43,5</text><text x="476.0" y="202" text-anchor="middle" class="ax">May</text><rect x="549.8" y="52.6" width="60.3" height="131.4" rx="3" class="c2"><title>Haz: 40,4</title></rect><text x="580.0" y="46.6" text-anchor="middle" class="dv">40,4</text><text x="580.0" y="202" text-anchor="middle" class="ax">Haz</text></svg></div>
+  <p class="not">Toplam 217,5 M TL teklif; şirketin kazanma oranıyla yaklaşık 65,0 M TL satış.</p></div>
+ <div class="kart"><h4>Satış temsilcileri</h4>
+  <div class="tw"><table><thead><tr><th class="">Temsilci</th><th class="r">Fırsat</th><th class="r">Kazanılan</th><th class="r">Oran</th><th class="r">Ort. iskonto</th></tr></thead><tbody><tr><td class="">Selin Karataş</td><td class="r">171</td><td class="r">55</td><td class="r">%32,2</td><td class="r">%11,2</td></tr><tr><td class="">Deniz Aydemir</td><td class="r">167</td><td class="r">52</td><td class="r">%31,1</td><td class="r">%6,6</td></tr><tr><td class="">Bora Yazıcı</td><td class="r">307</td><td class="r">91</td><td class="r">%29,6</td><td class="r">%11,0</td></tr><tr><td class="">Murat Gündoğdu</td><td class="r">73</td><td class="r">21</td><td class="r">%28,8</td><td class="r">%11,1</td></tr><tr><td class="">Ece Tan</td><td class="r">189</td><td class="r">52</td><td class="r">%27,5</td><td class="r">%8,2</td></tr></tbody></table></div>
+  <p class="not">Temsilci adları kurgusaldır.</p></div>
+</div></section><section class="panel" id="p-stok" role="tabpanel" hidden>
+<div class="kpis">
+ <div class="kpi kotu"><span>İtalyan redüktör</span><b>57 gün</b><em>MRP’de 30 gün tanımlı</em></div>
+ <div class="kpi "><span>Tedarikte zamanında</span><b>%17,8</b><em>7 acil sipariş</em></div>
+ <div class="kpi kotu"><span>Emniyet stoku tanımsız</span><b>%42</b><em>33 / 78 aktif kalem</em></div>
+ <div class="kpi "><span>Ölü stok</span><b>10,2 M</b><em>12 kalem; sayım doğruluğu %87</em></div>
+</div>
+<div class="iki">
+ <div class="kart"><h4>Tedarikçi: tanımlı ve gerçek tedarik süresi (gün)</h4>
+  <div class="gw"><svg viewBox="0 0 640 398" class="graf" role="img"><rect x="190" y="4" width="11" height="11" rx="2" class="c3"/><text x="206" y="14" class="ax">MRP’de tanımlı</text><rect x="320" y="4" width="11" height="11" rx="2" class="c2"/><text x="336" y="14" class="ax">gerçekleşen</text><text x="180" y="50" text-anchor="end" class="bl">Riduttori Padani S.r.l</text><rect x="190" y="32" width="189.9" height="15" rx="3" class="c3"/><text x="386.9" y="44" class="dv">30 g</text><rect x="190" y="50" width="360.0" height="15" rx="3" class="c2"/><text x="557.0" y="62" class="dv">57 g</text><text x="180" y="96" text-anchor="end" class="bl">Aşınmaz Çelik Tic. Ltd</text><rect x="190" y="78" width="132.9" height="15" rx="3" class="c3"/><text x="329.9" y="90" class="dv">21 g</text><rect x="190" y="96" width="171.4" height="15" rx="3" class="c2"/><text x="368.4" y="108" class="dv">27 g</text><text x="180" y="142" text-anchor="end" class="bl">Marmara Sac Servis Mer</text><rect x="190" y="124" width="88.6" height="15" rx="3" class="c3"/><text x="285.6" y="136" class="dv">14 g</text><rect x="190" y="142" width="118.9" height="15" rx="3" class="c2"/><text x="315.9" y="154" class="dv">19 g</text><text x="180" y="188" text-anchor="end" class="bl">Selçuk Metal Market Lt</text><rect x="190" y="170" width="63.3" height="15" rx="3" class="c3"/><text x="260.3" y="182" class="dv">10 g</text><rect x="190" y="188" width="88.6" height="15" rx="3" class="c2"/><text x="285.6" y="200" class="dv">14 g</text><text x="180" y="234" text-anchor="end" class="bl">Tarım Parça Tedarik Lt</text><rect x="190" y="216" width="116.1" height="15" rx="3" class="c3"/><text x="313.1" y="228" class="dv">18 g</text><rect x="190" y="234" width="139.5" height="15" rx="3" class="c2"/><text x="336.5" y="246" class="dv">22 g</text><text x="180" y="280" text-anchor="end" class="bl">Orta Anadolu Profil Sa</text><rect x="190" y="262" width="63.3" height="15" rx="3" class="c3"/><text x="260.3" y="274" class="dv">10 g</text><rect x="190" y="280" width="81.7" height="15" rx="3" class="c2"/><text x="278.7" y="292" class="dv">13 g</text><text x="180" y="326" text-anchor="end" class="bl">Hidroteks Hidrolik San</text><rect x="190" y="308" width="88.6" height="15" rx="3" class="c3"/><text x="285.6" y="320" class="dv">14 g</text><rect x="190" y="326" width="107.0" height="15" rx="3" class="c2"/><text x="304.0" y="338" class="dv">17 g</text><text x="180" y="372" text-anchor="end" class="bl">Ekim Kontrol Sistemler</text><rect x="190" y="354" width="132.9" height="15" rx="3" class="c3"/><text x="329.9" y="366" class="dv">21 g</text><rect x="190" y="372" width="150.5" height="15" rx="3" class="c2"/><text x="347.5" y="384" class="dv">24 g</text></svg></div>
+  <p class="not">Riduttori Padani S.r.l. redüktör tedarikçisi; sapma 27 gün. MRP siparişi geç açıyor, üretim bekliyor.</p></div>
+ <div class="kart"><h4>Ölü stok (12+ ay hareketsiz)</h4>
+  <div class="tw"><table><thead><tr><th class="">Kod</th><th class="">Kalem</th><th class="">Son hareket</th><th class="r">Değer</th></tr></thead><tbody><tr><td class="">ESK-001</td><td class=""><small>Redüktör 120 kNm (eski YKM-10)</small></td><td class="">09.04.2024</td><td class="r">1,73 M</td></tr><tr><td class="">ESK-005</td><td class=""><small>Sac S275 20 mm</small></td><td class="">04.03.2024</td><td class="r">1,56 M</td></tr><tr><td class="">ESK-006</td><td class=""><small>Mil çeliği Ø100</small></td><td class="">02.02.2025</td><td class="r">0,91 M</td></tr><tr><td class="">ESK-010</td><td class=""><small>Silaj bıçağı eski tip</small></td><td class="">01.04.2025</td><td class="r">0,87 M</td></tr><tr><td class="">ESK-002</td><td class=""><small>Tahrik şanzımanı eski PEM-4</small></td><td class="">15.07.2024</td><td class="r">0,84 M</td></tr><tr><td class="">ESK-008</td><td class=""><small>Tohum plakası eski (4 sıra)</small></td><td class="">22.03.2024</td><td class="r">0,81 M</td></tr><tr><td class="">ESK-011</td><td class=""><small>Rulman 22220</small></td><td class="">18.01.2025</td><td class="r">0,69 M</td></tr><tr><td class="">ESK-009</td><td class=""><small>Lastik 11.5/80-15.3</small></td><td class="">18.11.2024</td><td class="r">0,65 M</td></tr></tbody></table></div>
+  <p class="not">Muhasebe 150 ile ERP kalem stoku arasında 7,9 M TL fark — tamamı iki fişe bağlandı (sayım fazlası düzeltmesi, malı gelmemiş sac faturası).</p></div>
+</div></section><section class="panel" id="p-bayi" role="tabpanel" hidden>
+<div class="kpis">
+ <div class="kpi kotu"><span>Limit üstü sevk</span><b>14</b><em>4 bayiye</em></div>
+ <div class="kpi kotu"><span>Limit üstü tutar</span><b>25,4 M</b><em>CRM’de limit var, ERP’de blokaj yok</em></div>
+ <div class="kpi kotu"><span>Protestolu senet</span><b>8,9 M</b><em>11 senet; karşılık ayrılmamış</em></div>
+ <div class="kpi "><span>Garanti gideri</span><b>5,16 M</b><em>173 kayıt; %47’i redüktör</em></div>
+</div>
+<div class="iki">
+ <div class="kart"><h4>Kredi limiti aşılarak sevk yapılan bayiler</h4>
+  <div class="tw"><table><thead><tr><th class="">Bayi</th><th class="r">Sevk</th><th class="r">Tutar</th><th class="r">Limit</th><th class="r">En yüksek risk</th><th class="">Durum</th></tr></thead><tbody><tr><td class=""><small>EREĞLI YALÇINKAYA TARIM MAKİNALARI LTD. ŞTİ.</small></td><td class="r">5</td><td class="r">11,08 M</td><td class="r">6,0 M</td><td class="r">11,59 M</td><td class=""><small>Konkordato (geçici mühlet 12.05.2026)</small></td></tr><tr><td class=""><small>NIĞDE UÇAR TARIM MAKİNALARI LTD. ŞTİ.</small></td><td class="r">4</td><td class="r">6,90 M</td><td class="r">8,0 M</td><td class="r">10,58 M</td><td class=""><small>Normal</small></td></tr><tr><td class=""><small>KULU TOPAL TARIM MAKİNALARI LTD. ŞTİ.</small></td><td class="r">3</td><td class="r">4,60 M</td><td class="r">6,0 M</td><td class="r">9,11 M</td><td class=""><small>Gecikmeli ödeme</small></td></tr><tr><td class=""><small>TOKAT DUMAN TARIM MAKİNALARI LTD. ŞTİ.</small></td><td class="r">2</td><td class="r">2,80 M</td><td class="r">6,0 M</td><td class="r">10,50 M</td><td class=""><small>Gecikmeli ödeme</small></td></tr></tbody></table></div>
+  <p class="not">Bayi adları kurgusaldır.</p></div>
+ <div class="kart"><h4>Garanti arızaları: gruplara göre (M TL)</h4>
+  <div class="gw"><svg viewBox="0 0 640 184" class="graf" role="img"><text x="160" y="21" text-anchor="end" class="bl">Güç aktarma</text><rect x="170" y="8" width="380.0" height="18" rx="3" class="c2"><title>Güç aktarma: 3,99 M</title></rect><text x="557.0" y="21.5" class="dv">3,99 M</text><text x="160" y="51" text-anchor="end" class="bl">Elektrik</text><rect x="170" y="38" width="37.0" height="18" rx="3" class="c1"><title>Elektrik: 0,39 M</title></rect><text x="214.0" y="51.5" class="dv">0,39 M</text><text x="160" y="81" text-anchor="end" class="bl">Hidrolik</text><rect x="170" y="68" width="24.3" height="18" rx="3" class="c1"><title>Hidrolik: 0,26 M</title></rect><text x="201.3" y="81.5" class="dv">0,26 M</text><text x="160" y="111" text-anchor="end" class="bl">Yüzey</text><rect x="170" y="98" width="18.2" height="18" rx="3" class="c1"><title>Yüzey: 0,19 M</title></rect><text x="195.2" y="111.5" class="dv">0,19 M</text><text x="160" y="141" text-anchor="end" class="bl">Gövde</text><rect x="170" y="128" width="18.0" height="18" rx="3" class="c1"><title>Gövde: 0,19 M</title></rect><text x="195.0" y="141.5" class="dv">0,19 M</text><text x="160" y="171" text-anchor="end" class="bl">Mekanik</text><rect x="170" y="158" width="14.0" height="18" rx="3" class="c1"><title>Mekanik: 0,15 M</title></rect><text x="191.0" y="171.5" class="dv">0,15 M</text></svg></div>
+  <p class="not">Güç aktarma arızalarının tamamı 2025’in ikinci yarısında üretilen yem karma mikserleri — eski tip redüktör.</p></div>
+</div></section><section class="panel" id="p-mutabakat" role="tabpanel" hidden>
+<div class="kpis">
+ <div class="kpi "><span>Parasal mutabakat</span><b>5 kontrol</b><em>4’ü kuruşu kuruşuna tutuyor</em></div>
+ <div class="kpi kotu"><span>CRM → ERP</span><b>9 fırsat</b><em>kazanılmış, siparişi açılmamış — 15,7 M</em></div>
+ <div class="kpi kotu"><span>Sevk → fatura</span><b>6 irsaliye</b><em>8 makine, 8,9 M</em></div>
+ <div class="kpi kotu"><span>MES → ERP</span><b>17 makine</b><em>MES’te bitti, ERP’de girişi yok — 9,8 M</em></div>
+</div>
+<div class="kart"><h4>Sistemler arası parasal mutabakat</h4>
+ <div class="tw"><table><thead><tr><th class="">Kontrol</th><th class="r">Muhasebe</th><th class="r">Sistem</th><th class="r">Fark</th></tr></thead><tbody><tr><td class="">Muhasebe satış (600+601) ↔ ERP satış faturaları</td><td class="r">415,11 M</td><td class="r">415,11 M</td><td class="r"><b class="iy">✓ tutuyor</b></td></tr><tr><td class="">Muhasebe yarı mamul (151) ↔ ERP açık + iptal iş emirleri</td><td class="r">84,61 M</td><td class="r">84,61 M</td><td class="r"><b class="iy">✓ tutuyor</b></td></tr><tr><td class="">Muhasebe mamul (152) ↔ ERP mamul stoku</td><td class="r">26,40 M</td><td class="r">26,40 M</td><td class="r"><b class="iy">✓ tutuyor</b></td></tr><tr><td class="">Muhasebe garanti gideri (760.04) ↔ CRM servis kayıtları</td><td class="r">5,16 M</td><td class="r">5,16 M</td><td class="r"><b class="iy">✓ tutuyor</b></td></tr><tr><td class="">Muhasebe ilk madde (150) ↔ ERP kalem stok değeri</td><td class="r">59,84 M</td><td class="r">51,94 M</td><td class="r"><b class="kt">7,90 M</b></td></tr></tbody></table></div>
+ <p class="not">Mutabakat tutmadan hiçbir rapora güvenilmez. Bu çalışmada önce bu tablo kuruldu; farklar kayıt numarasına kadar indirildi.</p>
+</div></section>
+</div></section>
+
+<section class="blok" id="zincir"><div class="w">
+ <h2>Bulgular birbirinden bağımsız değil</h2>
+ <p class="alt">Dört zincir, muhasebedeki belirtilerin çoğunu tek başına açıklıyor. Her zincirin ilk halkası tek bir sistem ayarı ya da eksik bir kayıt.</p>
+ <div class="zincirler"><div class="zincir"><h3><i>1</i>Redüktör zinciri</h3><ol><li><b>MRP parametresi</b><span>tedarik süresi 30 gün tanımlı, gerçek 57</span></li><li><b>Malzeme eksikliği</b><span>20 iş emri redüktör bekledi</span></li><li><b>Yarı mamul şişmesi</b><span>84,6 M TL</span></li><li><b>Teslim gecikmesi</b><span>zamanında %72,4</span></li><li><b>Kayıp satış</b><span>217,5 M TL teklif</span></li></ol></div><div class="zincir"><h3><i>2</i>Ürün ağacı zinciri</h3><ol><li><b>Eski kod</b><span>YKM-16 reçetesinde RDK-140</span></li><li><b>Eksik maliyet</b><span>6 ayda 3,9 M TL</span></li><li><b>Yanlış fiyat</b><span>marj olduğundan yüksek görünüyor</span></li><li><b>Eski redüktör</b><span>yetersiz tork</span></li><li><b>Garanti</b><span>82 arıza, 4,0 M TL</span></li></ol></div><div class="zincir"><h3><i>3</i>Bayi zinciri</h3><ol><li><b>CRM’de limit var</b><span>ERP’de sevk blokajı yok</span></li><li><b>Limit aşımında sevk</b><span>14 sevk, 25,4 M TL</span></li><li><b>Vade gecikmesi</b><span>senetler ödenmiyor</span></li><li><b>Protesto</b><span>8,9 M TL</span></li><li><b>Konkordato</b><span>karşılık yok</span></li></ol></div><div class="zincir"><h3><i>4</i>Kayıt zinciri</h3><ol><li><b>MES: tamamlandı</b><span>17 makine</span></li><li><b>ERP: giriş yok</b><span>iş emri açık kaldı</span></li><li><b>Sevk yapıldı</b><span>mamul eksiye düştü</span></li><li><b>Muhasebe</b><span>151 şişkin, 152 eksi</span></li><li><b>Kâr</b><span>maliyet yanlış dönemde</span></li></ol></div></div>
+ <table class="etki"><thead><tr><th>Bulgu</th><th class="r">Tutar</th><th>Niteliği</th><th>Not</th></tr></thead><tbody><tr><td>Yarı mamulde anormal bekleyen stok</td><td class="r"><b>35,7 M</b></td><td>tek seferlik nakit</td><td><small>yıllık faiz ~16,8 M TL</small></td></tr><tr><td>MES’te bitmiş, ERP’de stoka alınmamış makineler</td><td class="r"><b>9,8 M</b></td><td>satılabilir stok</td><td><small>aynı gün düzeltilir</small></td></tr><tr><td>İptal iş emirlerinden iade edilmeyen malzeme</td><td class="r"><b>7,5 M</b></td><td>stoka dönüş</td><td><small>depoya iade kaydı</small></td></tr><tr><td>Ölü stok (12+ ay hareketsiz)</td><td class="r"><b>10,2 M</b></td><td>değer düşüklüğü riski</td><td><small>satış / hurda kararı</small></td></tr><tr><td>Reçete (BOM) hatası: eksik hesaplanan maliyet</td><td class="r"><b>3,9 M</b></td><td>fiyatlama hatası</td><td><small>yıllık ~7,7 M TL</small></td></tr><tr><td>Teslim süresi nedeniyle kaybedilen teklifler</td><td class="r"><b>217,5 M</b></td><td>kaçan satış</td><td><small>~65,0 M TL satış</small></td></tr><tr><td>Limit aşımında yapılan bayi sevkleri</td><td class="r"><b>25,4 M</b></td><td>alacak riski</td><td><small>4 bayi, 14 sevk</small></td></tr><tr><td>Faturalanmamış sevkler</td><td class="r"><b>8,9 M</b></td><td>hasılat kaydı eksik</td><td><small>6 irsaliye</small></td></tr><tr><td>CRM’de kazanılmış, ERP’de siparişi yok</td><td class="r"><b>15,7 M</b></td><td>üretime girmemiş talep</td><td><small>9 fırsat</small></td></tr><tr><td>Redüktör kaynaklı garanti maliyeti</td><td class="r"><b>4,0 M</b></td><td>kalite maliyeti</td><td><small>eski tip redüktör</small></td></tr><tr><td>Kayıt dışı işçilik zamanı</td><td class="r"><b>6,3 M</b></td><td>verimlilik</td><td><small>19.947 saat</small></td></tr></tbody></table>
+ <p class="not">Aynı kaynak birden fazla bulguda görünebilir (ör. MES–ERP farkı yarı mamulün içindedir); tutarlar toplanmamalıdır.</p>
+</div></section>
+
+<section class="blok pano" id="belgeler"><div class="w">
+ <h2>Belgeler</h2>
+ <p class="alt">Üç rapor ve müşteriden gelmiş gibi hazırlanan ham dışa aktarımlar. Hepsi kurgusal şirkete aittir.</p>
+ <div class="belgeler"><a class="belge" href="belgeler/A1-orveks-mali-analiz-raporu.pdf" target="_blank" rel="noopener"><i class="a">A1</i><div><b>Mali Analiz Raporu</b><span class="rozet">Yalnız mizan + yevmiye · 26 sayfa</span><p>Bilanço, kârlılık, işletme sermayesi, 12 bulgu, düzeltilmiş kâr köprüsü ve “mizanın göremedikleri”.</p></div></a><a class="belge" href="belgeler/A2-orveks-cozum-recetesi.pdf" target="_blank" rel="noopener"><i class="a">A2</i><div><b>Çözüm Reçetesi</b><span class="rozet">Yalnız mizan + yevmiye · 18 sayfa</span><p>7 kök neden; acil düzeltme, kadro, yetki, süreç; ERP + MRP + MES + CRM kurulum yol haritası ve bütçe.</p></div></a><a class="belge" href="belgeler/B1-orveks-entegre-performans-raporu.pdf" target="_blank" rel="noopener"><i class="b">B1</i><div><b>Entegre Performans Raporu</b><span class="rozet">ERP + CRM + MRP + MES · 25 sayfa</span><p>A1’in her belirtisinin kök nedeni kayıt numarasıyla: teslim, OEE, yarı mamul, BOM hatası, bayi riski, mutabakat.</p></div></a></div>
+ <div class="gelen"><h4>Gelen belgeler</h4><p>Analizin girdileri: detay mizan, yevmiye ve sistem dışa aktarımları. Aynı veriyle çalışmayı kendiniz tekrarlayabilirsiniz.</p>
+ <ul><li><a href="belgeler/ORVEKS_CRM_Disa_Aktarim_2026-06-30.xlsx" download>ORVEKS_CRM_Disa_Aktarim_2026-06-30.xlsx</a><span>101 KB</span></li><li><a href="belgeler/ORVEKS_Detay_Mizan_2026-06.pdf" download>ORVEKS_Detay_Mizan_2026-06.pdf</a><span>735 KB</span></li><li><a href="belgeler/ORVEKS_ERP_Disa_Aktarim_2026-06-30.xlsx" download>ORVEKS_ERP_Disa_Aktarim_2026-06-30.xlsx</a><span>428 KB</span></li><li><a href="belgeler/ORVEKS_MES_Disa_Aktarim_2026-06-30.xlsx" download>ORVEKS_MES_Disa_Aktarim_2026-06-30.xlsx</a><span>188 KB</span></li><li><a href="belgeler/ORVEKS_Muhasebe_Yevmiye_Mizan_2026-H1.xlsx" download>ORVEKS_Muhasebe_Yevmiye_Mizan_2026-H1.xlsx</a><span>407 KB</span></li></ul></div>
+</div></section>
+
+<section class="blok" id="nasil"><div class="w">
+ <h2>Nasıl çalışıyoruz</h2>
+ <p class="alt">Elinizde yalnız mizan varsa A yolu, sistemleriniz varsa B yolu. İkisi de aynı sırayla ilerler.</p>
+ <div class="adimlar">
+  <div class="adim"><h4>Veri talebi</h4><p>Detay mizan, yevmiye; varsa ERP, CRM, MES dışa aktarımları. Kısa bir bilgi talep listesi.</p></div>
+  <div class="adim"><h4>Mutabakat</h4><p>Önce kayıtların birbirini tuttuğunu kanıtlarız. Tutmayan her fark bir fişe veya kayda bağlanır.</p></div>
+  <div class="adim"><h4>Analiz ve rapor</h4><p>Bulgular, kök nedenler, parasal etki. Yönetime sunum ve seslendirmeli özet video.</p></div>
+  <div class="adim"><h4>Çözüm ve kurulum</h4><p>Süreç, kadro, yetki düzeni; gerekirse Odoo ile ERP + MRP + MES + CRM kurulumu ve takip panosu.</p></div>
+ </div>
+</div></section>
+
+<footer><div class="w">
+ <b>Emre Ceran</b> · Finans ve Sistem Danışmanlığı · Konya · <a href="mailto:emrecrn@gmail.com">emrecrn@gmail.com</a><br>
+ Bu sayfadaki şirket, kişiler ve rakamlar kurgusaldır; gerçek bir işletmeyle benzerlik tesadüftür. Dönem: 01.01.2026 – 30.06.2026.
+</div></footer>
+
+<script>
+(function () {
+  var r = document.documentElement, b = document.getElementById('tema');
+  try { var t = localStorage.getItem('orveks-tema'); if (t) r.setAttribute('data-theme', t); } catch (e) {}
+  b.addEventListener('click', function () {
+    var koyu = r.getAttribute('data-theme') ? r.getAttribute('data-theme') === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    var yeni = koyu ? 'light' : 'dark'; r.setAttribute('data-theme', yeni);
+    try { localStorage.setItem('orveks-tema', yeni); } catch (e) {}
+  });
+  var btn = document.querySelectorAll('.sekmeler button');
+  function ac(k) {
+    btn.forEach(function (x) { x.setAttribute('aria-selected', x.dataset.s === k ? 'true' : 'false'); });
+    document.querySelectorAll('.panel').forEach(function (p) { p.hidden = p.id !== 'p-' + k; });
+  }
+  btn.forEach(function (x) { x.addEventListener('click', function () { ac(x.dataset.s); history.replaceState(null, '', '#' + x.dataset.s); }); });
+  var h = location.hash.slice(1); if (document.getElementById('p-' + h)) { ac(h); document.getElementById('pano').scrollIntoView(); }
+})();
+</script>
+</body></html>
