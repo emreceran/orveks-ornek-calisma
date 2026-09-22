@@ -103,7 +103,51 @@ svg .hedef { stroke:var(--iy); stroke-dasharray:5 4; stroke-width:1.5 } svg .ht 
 .adim h4 { margin:6px 0 6px } .adim p { margin:0; font-size:14px; color:var(--ink2) }
 footer { border-top:1px solid var(--cizgi); padding:28px 0 40px; color:var(--muted); font-size:13.5px }
 footer b { color:var(--ink) }
+.logo small { font-weight:400; letter-spacing:0; color:var(--muted); font-size:12.5px; margin-left:6px }
+.kurgu b { font-weight:600 }
+.hero { padding:88px 0 80px }
+.hero h1 { font-size:clamp(38px,6.4vw,76px); line-height:1.04; letter-spacing:-.02em }
+.hero h1 em { font-style:normal; color:var(--c2) }
+.hero p { font-size:18px }
+.dev { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin:34px 0 26px; max-width:1000px; border-top:1px solid rgba(255,255,255,.18) }
+.dev div { padding:22px 22px 4px 0 }
+.dev b { display:block; font-size:clamp(34px,4.6vw,54px); line-height:1; color:var(--c2); font-variant-numeric:tabular-nums; letter-spacing:-.02em }
+.dev span { display:block; margin-top:10px; font-size:15.5px; opacity:.88; max-width:260px }
+.hero .hero-alt { font-size:17px; opacity:1; margin-bottom:30px }
+.slayt { padding:100px 0 }
+.slayt > .w { width:100% }
+.slayt h2 { font-size:clamp(28px,4vw,46px); line-height:1.1; margin-bottom:34px; max-width:900px; letter-spacing:-.01em }
+.no { display:inline-block; font:500 13px "IBM Plex Mono",monospace; color:var(--c2); letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px }
+.koyu { background:var(--hero); color:var(--heroink); --ink:#e6ebf0; --ink2:#bac5d0; --muted:#8e9bab; --cizgi:rgba(255,255,255,.14); --yuz:rgba(255,255,255,.05); --lac:#9cc3ea; --soft:rgba(255,255,255,.06) }
+.uclu { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:30px; max-width:900px }
+.uclu div { background:var(--yuz); border:1px solid var(--cizgi); border-radius:14px; padding:22px }
+.uclu b { display:block; font-size:clamp(30px,3.8vw,44px); line-height:1.05; color:var(--lac) }
+.uclu .kotu b { color:var(--kt) }
+.uclu span { color:var(--ink2); font-size:15px }
+.buyuk { font-size:clamp(18px,2vw,22px); line-height:1.55; max-width:860px; color:var(--ink2); margin:0 }
+.buyuk b { color:var(--ink) }
+.bulgular { display:grid; grid-template-columns:1fr 1fr; gap:16px }
+.bulgu { position:relative; background:var(--yuz); border:1px solid var(--cizgi); border-radius:14px; padding:24px 24px 20px 24px }
+.bulgu i { position:absolute; top:22px; right:22px; font:600 13px "IBM Plex Mono",monospace; color:var(--muted) }
+.bulgu h3 { margin:0 0 14px; font-size:21px; color:#fff; padding-right:30px }
+.bulgu p { margin:0 0 12px; font-size:15px; color:var(--ink2) }
+.bulgu p span { display:block; font:500 11.5px "IBM Plex Mono",monospace; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:3px }
+.bulgu .neden { color:var(--ink) } .bulgu .neden b { color:#fff }
+.bulgu .para { margin:16px 0 0; padding-top:14px; border-top:1px solid var(--cizgi); font-weight:600; font-size:16.5px; color:var(--c2) }
+.kazanc { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:18px }
+.kazanc div { background:var(--yuz); border:1px solid var(--cizgi); border-radius:14px; padding:22px; border-top:4px solid var(--iy) }
+.kazanc b { display:block; font-size:clamp(28px,3.4vw,40px); line-height:1.05; color:var(--iy); font-variant-numeric:tabular-nums; letter-spacing:-.01em }
+.kazanc span { display:block; margin-top:8px; font-size:15.5px; color:var(--ink) }
+.kazanc em { display:block; font-style:normal; font:500 12px "IBM Plex Mono",monospace; color:var(--muted); margin-top:4px; text-transform:uppercase }
+.bir-hafta { margin-top:26px; background:var(--soft); border-radius:14px; padding:20px 24px; font-size:16px }
+.bir-hafta ul { margin:10px 0 0; padding-left:20px; columns:2; color:var(--ink2) } .bir-hafta li { margin-bottom:4px; break-inside:avoid }
+.koyu .adim { background:var(--yuz) }
+.cta { margin-top:34px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; border:1px solid var(--cizgi); border-radius:14px; padding:24px 26px }
+.cta b { display:block; font-size:clamp(19px,2.2vw,24px); color:#fff } .cta span { color:var(--ink2); font-size:14.5px }
+.cta .btn { margin:0; font-size:17px; padding:13px 26px }
+.ayrac { border-top:1px solid var(--cizgi) }
 @media (max-width:900px) {
+  .dev,.uclu,.kazanc { grid-template-columns:1fr } .bulgular { grid-template-columns:1fr } .bir-hafta ul { columns:1 } .slayt { min-height:0; padding:72px 0 }
   .kpis { grid-template-columns:1fr 1fr } .iki,.dunyalar,.belgeler { grid-template-columns:1fr }
   .adimlar { grid-template-columns:1fr 1fr } .firma { grid-template-columns:1fr 1fr }
   .zincir ol { grid-template-columns:1fr } .zincir li:not(:last-child)::after { content:"↓"; right:auto; left:50%; top:auto; bottom:-15px; transform:none }
@@ -112,50 +156,79 @@ footer b { color:var(--ink) }
   .karsi th,.karsi td { padding:9px 10px; font-size:13px } .karsi tbody th { white-space:normal } section.blok { padding:48px 0 } }
 </style>
 </head><body>
-<div class="kurgu">Örnek çalışma — kurgusal şirket. ORVEKS, bayileri, tedarikçileri ve bütün rakamlar uydurmadır.</div>
+<div class="kurgu">Örnek çalışma · <b>şirket ve rakamlar kurgusal, yöntem gerçek.</b></div>
 <header class="ust"><div class="w">
- <a class="logo" href="#">ORVEKS</a>
- <nav><a href="#iki-bakis">İki bakış</a><a href="#pano">Pano</a><a href="#zincir">Kök nedenler</a><a href="#belgeler">Belgeler</a><a href="#nasil">Nasıl çalışıyoruz</a></nav>
- <button id="tema" type="button" aria-label="Tema değiştir">◐ Tema</button>
+ <a class="logo" href="#">ORVEKS <small>örnek çalışma</small></a>
+ <nav><a href="#sorun">Sorun</a><a href="#bulgular">Ne bulduk</a><a href="#kazanc">Kazanç</a><a href="#nasil">Nasıl başlarız</a><a href="#detay">Detay</a></nav>
+ <button id="tema" type="button" aria-label="Tema değiştir">◐</button>
 </div></header>
 
 <div class="hero"><div class="w">
- <small>Finans ve sistem danışmanlığı · örnek çalışma</small>
- <h1>Aynı şirket, aynı altı ay: iki farklı bakış.</h1>
- <p>Önce yalnızca <b>mizan ve yevmiyeyle</b> bir tarım makinesi üreticisini inceledik: 12 bulgu, 10 cevapsız soru. Sonra aynı dönemi
- <b>ERP, CRM, MRP ve MES</b> verisiyle yeniden ele aldık: her sorunun cevabı, kayıt numarasına kadar.</p>
- <a class="btn" href="#pano">Panoyu incele</a><a class="btn ikincil" href="#belgeler">Raporları indir</a>
- <div class="firma">
-  <div><b>142</b><span>çalışan · Konya 1. OSB</span></div>
-  <div><b>9</b><span>model tarım makinesi</span></div>
-  <div><b>34</b><span>bayi + ihracat (EUR)</span></div>
-  <div><b>407 M TL</b><span>net satış, Oca–Haz 2026</span></div>
+ <small>Finans ve sistem danışmanlığı</small>
+ <h1>Satış var, iş var.<br><em>Para nerede?</em></h1>
+ <p>Bir tarım makinesi üreticisinin altı ayını inceledik. Muhasebe kayıtları her şeyi doğru topluyordu,
+ ama patronun asıl sorularına cevap vermiyordu. Bulduklarımız:</p>
+ <div class="dev">
+  <div><b>46 M TL</b><span>stokta ve üretim hattında atıl bekleyen para</span></div>
+  <div><b>65 M TL</b><span>geç teslim yüzünden kaçan satış</span></div>
+  <div><b>25 M TL</b><span>önceden görülebilecek batık alacak riski</span></div>
  </div>
+ <p class="hero-alt">Hiçbiri mizanda görünmüyordu ya da çok geç görünüyordu. <b>Kök nedenleri birkaç basit ayar ve kayıt hatasıydı.</b></p>
+ <a class="btn" href="#bulgular">60 saniyede görün ↓</a>
 </div></div>
 
-<section class="blok" id="iki-bakis"><div class="w">
- <h2>Mizan “ne oluyor”u söyler; sistem verisi “neden”i.</h2>
- <p class="alt">İki çalışma da aynı simülasyondan çıkan aynı olayları inceliyor. Fark, elimizdeki veride.</p>
- <div class="dunyalar">
-  <div class="dunya"><span class="k">A1 + A2 · yalnız muhasebe</span><h3>Mali analiz ve çözüm reçetesi</h3>
-   <ul><li>Yarı mamul 39,6 M TL → 84,6 M TL; neden bilinmiyor</li>
-   <li>Finansman gideri faaliyet kârının %78’ini yiyor</li>
-   <li>47,5 M TL yatırım aktifleştirilmemiş, amortisman eksik</li>
-   <li>8,9 M TL protestolu senet, karşılık yok</li>
-   <li>Yazılımsız şirkete ERP + MRP + MES + CRM kurulum reçetesi</li></ul></div>
-  <div class="dunya b"><span class="k">B1 · ERP + CRM + MRP + MES</span><h3>Entegre performans raporu</h3>
-   <ul><li>Yarı mamulün 35,7 M TL’si anormal; beş sınıfa, iş emrine kadar</li>
-   <li>Zamanında teslim %72,4; kök neden redüktör tedarik süresi</li>
-   <li>YKM-16 reçetesinde eski parça: maliyet ve garanti zinciri</li>
-   <li>4 bayiye limit üstü sevk; ERP’de blokaj yok</li>
-   <li>Üç sistemler arası kopukluk: CRM→ERP, sevk→fatura, MES→ERP</li></ul></div>
+<section class="slayt" id="sorun"><div class="w">
+ <span class="no">01 · Tablo</span>
+ <h2>Kâğıt üstünde her şey yolunda görünüyordu.</h2>
+ <div class="uclu">
+  <div><b>407 M TL</b><span>6 aylık net satış</span></div>
+  <div><b>%23</b><span>brüt kâr marjı</span></div>
+  <div class="kotu"><b>%3,5</b><span>geriye kalan kâr</span></div>
  </div>
+ <p class="buyuk">Faiz gideri faaliyet kârının <b>%78’ini</b> yiyordu. Yarı mamul stoku altı ayda
+ <b>iki katına</b> çıkmıştı. Teslimler gecikiyor, kasa sürekli sıkışıyordu. Ama <b>neden</b> olduğunu kimse bilmiyordu.</p>
+</div></section>
+
+<section class="slayt koyu" id="bulgular"><div class="w">
+ <span class="no">02 · Ne bulduk</span>
+ <h2>Dört kök neden. Hepsi kayıt numarasıyla.</h2>
+ <div class="bulgular"><article class="bulgu"><i>1</i><h3>Teslimler gecikiyor, satış kaçıyor</h3><p class="mizan"><span>Mizanda görünen</span>Satış mart–nisan zirvesinden sonra düşüyor.</p><p class="neden"><span>Gerçek neden</span>Sistemde İtalyan redüktörün tedarik süresi <b>30 gün</b> yazıyor; gerçekte <b>57 gün</b>. Sipariş geç veriliyor, üretim bekliyor. Zamanında teslim %72, haziranda %44.</p><p class="para">217 M TL teklif sırf teslim süresi yüzünden kaybedildi</p></article><article class="bulgu"><i>2</i><h3>Para stokta bekliyor</h3><p class="mizan"><span>Mizanda görünen</span>Yarı mamul 40 → 85 M TL.</p><p class="neden"><span>Gerçek neden</span>36 M TL’si normal akış değil: darboğaz kuyruğu, kalite bekleyenler, <b>bitmiş ama stoka girilmemiş makineler</b>, iptal edilen işlerin malzemesi. Üstüne 10 M TL yıllardır hareketsiz stok.</p><p class="para">46 M TL nakde dönebilir; faiz yükü yılda ~22 M TL</p></article><article class="bulgu"><i>3</i><h3>Kârlı sanılan ürün</h3><p class="mizan"><span>Mizanda görünen</span>Ürün bazında kârlılık hiç görünmüyor.</p><p class="neden"><span>Gerçek neden</span>En çok satan mikserin reçetesinde <b>eski parça kodu</b> kalmış: maliyet makine başına 86 bin TL eksik hesaplanıyor, fiyat buna göre veriliyor. Aynı eski parça garanti arızalarının %47’i.</p><p class="para">6 ayda 3,9 M TL eksik maliyet + 4,0 M TL garanti</p></article><article class="bulgu"><i>4</i><h3>Bayi batıyor, sevk sürüyor</h3><p class="mizan"><span>Mizanda görünen</span>8,9 M TL protestolu senet — ama iş işten geçtikten sonra.</p><p class="neden"><span>Gerçek neden</span>CRM’de bayi kredi limiti tanımlı, ama ERP sevki durdurmuyor. <b>4 bayiye limit üstünde 14 sevk</b> yapılmış; biri konkordato ilan etti.</p><p class="para">25,4 M TL alacak riski önceden görülebilirdi</p></article></div>
+</div></section>
+
+<section class="slayt" id="kazanc"><div class="w">
+ <span class="no">03 · Ne kazandırır</span>
+ <h2>Bu örnekte masaya konan para</h2>
+ <div class="kazanc"><div><b>45,9 M TL</b><span>nakde dönebilecek stok</span><em>tek seferlik</em></div><div><b>~22 M TL</b><span>bu paranın yıllık faiz yükü</span><em>her yıl</em></div><div><b>~65 M TL</b><span>geç teslim yüzünden kaçan satış</span><em>6 ayda</em></div><div><b>25,4 M TL</b><span>önceden görülebilecek alacak riski</span><em>sevk anında</em></div><div><b>~7,7 M TL</b><span>yanlış maliyetle verilen fiyat farkı</span><em>her yıl</em></div><div><b>4,0 M TL</b><span>tek parçadan gelen garanti maliyeti</span><em>6 ayda</em></div></div>
+ <p class="not">Tutarlar kurgusal şirkete aittir; her işletmede farklı çıkar. Stok ve faiz kalemleri birbiriyle çakışmayacak şekilde seçilmiştir.
+ Kaçan satış, kaybedilen teklif tutarı × şirketin kazanma oranıdır.</p>
+ <div class="bir-hafta"><b>Düzeltmelerin çoğu yazılım almadan, ilk 30 günde yapılabilir:</b>
+  <ul><li>MRP’deki tedarik sürelerini gerçeğe çekmek</li><li>Ürün reçetesindeki eski parça kodunu düzeltmek</li>
+  <li>Bayi kredi limitini sevkte zorunlu kılmak</li><li>Üretimi biten makinelerin stok girişini aynı gün yapmak</li></ul></div>
+</div></section>
+
+<section class="slayt koyu" id="nasil"><div class="w">
+ <span class="no">04 · Nasıl başlarız</span>
+ <h2>Başlamak için mizanınız yeter.</h2>
+ <div class="adimlar">
+  <div class="adim"><h4>Mizan ve yevmiye</h4><p>Muhasebenizden iki dosya. Kısa bir bilgi talep listesi.</p></div>
+  <div class="adim"><h4>Mali analiz</h4><p>Paranın nerede bağlandığı, kârın nereye gittiği, riskler. Yönetime tek sayfalık özet.</p></div>
+  <div class="adim"><h4>Kök neden</h4><p>ERP, CRM, üretim verisi varsa kayıt numarasına kadar ineriz. Yoksa neyin kurulacağını gösteririz.</p></div>
+  <div class="adim"><h4>Çözüm ve takip</h4><p>Süreç ve yetki düzeni; gerekirse Odoo ile ERP + üretim + CRM kurulumu ve haftalık yönetim panosu.</p></div>
+ </div>
+ <div class="cta"><div><b>Kendi şirketinizin tablosunu görmek ister misiniz?</b><span>Emre Ceran · Finans ve Sistem Danışmanlığı · Konya</span></div>
+  <a class="btn" href="mailto:emrecrn@gmail.com?subject=Mali%20analiz%20g%C3%B6r%C3%BC%C5%9Fmesi">Görüşelim</a></div>
+</div></section>
+
+<section class="blok ayrac" id="detay"><div class="w">
+ <span class="no">Detay isteyene</span>
+ <h2>Aynı şirket, iki bakış</h2>
+ <p class="alt">Önce yalnızca mizan ve yevmiyeyle inceledik; sonra aynı dönemi ERP, CRM ve üretim (MES) verisiyle. Mizan “ne oluyor”u söyler; sistem verisi “neden”i.</p>
  <table class="karsi"><thead><tr><th>Konu</th><th>Yalnız muhasebe</th><th>ERP + CRM + MES</th></tr></thead><tbody><tr><th>Yarı mamul</th><td>İki katına çıktı; nedeni tahmin</td><td>Beş sınıfa ayrıldı; 35,7 M TL anormal, iş emri listesiyle</td></tr><tr><th>Yeni yatırımlar</th><td>Aktifleştirilmemiş olabilir</td><td>Devreye alma tarihi MES’ten kesin</td></tr><tr><th>Mamul eksi bakiye</th><td>Üretim girişi eksik olabilir</td><td>17 makine, iş emri numaralarıyla</td></tr><tr><th>Teslim</th><td>Görünmüyor</td><td>Zamanında %72,4; gecikme nedeni ayrımı</td></tr><tr><th>Kârlılık</th><td>Toplam brüt marj</td><td>Model, kanal, müşteri; standart–gerçek sapma; BOM hatası</td></tr><tr><th>Satış kaybı</th><td>Görünmüyor</td><td>Kayıp nedeni; teslim süresi kaybı 217,5 M TL</td></tr><tr><th>Bayi riski</th><td>Protestodan sonra</td><td>Sevk anında; limit aşımı listesi</td></tr><tr><th>Makine</th><td>Görünmüyor</td><td>OEE, darboğaz, duruş nedeni</td></tr></tbody></table>
 </div></section>
 
 <section class="blok pano" id="pano"><div class="w">
  <h2>Entegre performans panosu</h2>
- <p class="alt">B1 raporunun verisi. Her rakam ERP, CRM veya MES kaydına bağlıdır; mizanla mutabakatı yapılmıştır.</p>
+ <p class="alt">Her rakam ERP, CRM veya MES kaydına bağlıdır; mizanla mutabakatı yapılmıştır.</p>
  <div class="sekmeler" role="tablist"><button role="tab" data-s="ozet" aria-selected="true">Özet</button><button role="tab" data-s="teslim" aria-selected="false">Teslim</button><button role="tab" data-s="uretim" aria-selected="false">Üretim · OEE</button><button role="tab" data-s="ym" aria-selected="false">Yarı mamul</button><button role="tab" data-s="karlilik" aria-selected="false">Kârlılık</button><button role="tab" data-s="satis" aria-selected="false">Satış · CRM</button><button role="tab" data-s="stok" aria-selected="false">Stok · tedarik</button><button role="tab" data-s="bayi" aria-selected="false">Bayi · garanti</button><button role="tab" data-s="mutabakat" aria-selected="false">Mutabakat</button></div>
  <section class="panel" id="p-ozet" role="tabpanel">
 <div class="kpis">
@@ -287,30 +360,19 @@ footer b { color:var(--ink) }
 </div></section>
 
 <section class="blok" id="zincir"><div class="w">
- <h2>Bulgular birbirinden bağımsız değil</h2>
- <p class="alt">Dört zincir, muhasebedeki belirtilerin çoğunu tek başına açıklıyor. Her zincirin ilk halkası tek bir sistem ayarı ya da eksik bir kayıt.</p>
+ <h2>Bulgular birbirine bağlı</h2>
+ <p class="alt">Her zincirin ilk halkası tek bir sistem ayarı ya da eksik bir kayıt.</p>
  <div class="zincirler"><div class="zincir"><h3><i>1</i>Redüktör zinciri</h3><ol><li><b>MRP parametresi</b><span>tedarik süresi 30 gün tanımlı, gerçek 57</span></li><li><b>Malzeme eksikliği</b><span>20 iş emri redüktör bekledi</span></li><li><b>Yarı mamul şişmesi</b><span>84,6 M TL</span></li><li><b>Teslim gecikmesi</b><span>zamanında %72,4</span></li><li><b>Kayıp satış</b><span>217,5 M TL teklif</span></li></ol></div><div class="zincir"><h3><i>2</i>Ürün ağacı zinciri</h3><ol><li><b>Eski kod</b><span>YKM-16 reçetesinde RDK-140</span></li><li><b>Eksik maliyet</b><span>6 ayda 3,9 M TL</span></li><li><b>Yanlış fiyat</b><span>marj olduğundan yüksek görünüyor</span></li><li><b>Eski redüktör</b><span>yetersiz tork</span></li><li><b>Garanti</b><span>82 arıza, 4,0 M TL</span></li></ol></div><div class="zincir"><h3><i>3</i>Bayi zinciri</h3><ol><li><b>CRM’de limit var</b><span>ERP’de sevk blokajı yok</span></li><li><b>Limit aşımında sevk</b><span>14 sevk, 25,4 M TL</span></li><li><b>Vade gecikmesi</b><span>senetler ödenmiyor</span></li><li><b>Protesto</b><span>8,9 M TL</span></li><li><b>Konkordato</b><span>karşılık yok</span></li></ol></div><div class="zincir"><h3><i>4</i>Kayıt zinciri</h3><ol><li><b>MES: tamamlandı</b><span>17 makine</span></li><li><b>ERP: giriş yok</b><span>iş emri açık kaldı</span></li><li><b>Sevk yapıldı</b><span>mamul eksiye düştü</span></li><li><b>Muhasebe</b><span>151 şişkin, 152 eksi</span></li><li><b>Kâr</b><span>maliyet yanlış dönemde</span></li></ol></div></div>
  <table class="etki"><thead><tr><th>Bulgu</th><th class="r">Tutar</th><th>Niteliği</th><th>Not</th></tr></thead><tbody><tr><td>Yarı mamulde anormal bekleyen stok</td><td class="r"><b>35,7 M</b></td><td>tek seferlik nakit</td><td><small>yıllık faiz ~16,8 M TL</small></td></tr><tr><td>MES’te bitmiş, ERP’de stoka alınmamış makineler</td><td class="r"><b>9,8 M</b></td><td>satılabilir stok</td><td><small>aynı gün düzeltilir</small></td></tr><tr><td>İptal iş emirlerinden iade edilmeyen malzeme</td><td class="r"><b>7,5 M</b></td><td>stoka dönüş</td><td><small>depoya iade kaydı</small></td></tr><tr><td>Ölü stok (12+ ay hareketsiz)</td><td class="r"><b>10,2 M</b></td><td>değer düşüklüğü riski</td><td><small>satış / hurda kararı</small></td></tr><tr><td>Reçete (BOM) hatası: eksik hesaplanan maliyet</td><td class="r"><b>3,9 M</b></td><td>fiyatlama hatası</td><td><small>yıllık ~7,7 M TL</small></td></tr><tr><td>Teslim süresi nedeniyle kaybedilen teklifler</td><td class="r"><b>217,5 M</b></td><td>kaçan satış</td><td><small>~65,0 M TL satış</small></td></tr><tr><td>Limit aşımında yapılan bayi sevkleri</td><td class="r"><b>25,4 M</b></td><td>alacak riski</td><td><small>4 bayi, 14 sevk</small></td></tr><tr><td>Faturalanmamış sevkler</td><td class="r"><b>8,9 M</b></td><td>hasılat kaydı eksik</td><td><small>6 irsaliye</small></td></tr><tr><td>CRM’de kazanılmış, ERP’de siparişi yok</td><td class="r"><b>15,7 M</b></td><td>üretime girmemiş talep</td><td><small>9 fırsat</small></td></tr><tr><td>Redüktör kaynaklı garanti maliyeti</td><td class="r"><b>4,0 M</b></td><td>kalite maliyeti</td><td><small>eski tip redüktör</small></td></tr><tr><td>Kayıt dışı işçilik zamanı</td><td class="r"><b>6,3 M</b></td><td>verimlilik</td><td><small>19.947 saat</small></td></tr></tbody></table>
- <p class="not">Aynı kaynak birden fazla bulguda görünebilir (ör. MES–ERP farkı yarı mamulün içindedir); tutarlar toplanmamalıdır.</p>
+ <p class="not">Aynı kaynak birden fazla bulguda görünebilir (ör. MES–ERP farkı yarı mamulün içindedir); bu tablodaki tutarlar toplanmamalıdır.</p>
 </div></section>
 
 <section class="blok pano" id="belgeler"><div class="w">
- <h2>Belgeler</h2>
- <p class="alt">Üç rapor ve müşteriden gelmiş gibi hazırlanan ham dışa aktarımlar. Hepsi kurgusal şirkete aittir.</p>
+ <h2>Raporlar</h2>
+ <p class="alt">Çalışmanın tam hâli. Hepsi kurgusal şirkete aittir.</p>
  <div class="belgeler"><a class="belge" href="belgeler/A1-orveks-mali-analiz-raporu.pdf" target="_blank" rel="noopener"><i class="a">A1</i><div><b>Mali Analiz Raporu</b><span class="rozet">Yalnız mizan + yevmiye · 26 sayfa</span><p>Bilanço, kârlılık, işletme sermayesi, 12 bulgu, düzeltilmiş kâr köprüsü ve “mizanın göremedikleri”.</p></div></a><a class="belge" href="belgeler/A2-orveks-cozum-recetesi.pdf" target="_blank" rel="noopener"><i class="a">A2</i><div><b>Çözüm Reçetesi</b><span class="rozet">Yalnız mizan + yevmiye · 18 sayfa</span><p>7 kök neden; acil düzeltme, kadro, yetki, süreç; ERP + MRP + MES + CRM kurulum yol haritası ve bütçe.</p></div></a><a class="belge" href="belgeler/B1-orveks-entegre-performans-raporu.pdf" target="_blank" rel="noopener"><i class="b">B1</i><div><b>Entegre Performans Raporu</b><span class="rozet">ERP + CRM + MRP + MES · 25 sayfa</span><p>A1’in her belirtisinin kök nedeni kayıt numarasıyla: teslim, OEE, yarı mamul, BOM hatası, bayi riski, mutabakat.</p></div></a></div>
- <div class="gelen"><h4>Gelen belgeler</h4><p>Analizin girdileri: detay mizan, yevmiye ve sistem dışa aktarımları. Aynı veriyle çalışmayı kendiniz tekrarlayabilirsiniz.</p>
+ <div class="gelen"><h4>Ham veri</h4><p>Analizin girdileri: detay mizan, yevmiye ve sistem dışa aktarımları.</p>
  <ul><li><a href="belgeler/ORVEKS_CRM_Disa_Aktarim_2026-06-30.xlsx" download>ORVEKS_CRM_Disa_Aktarim_2026-06-30.xlsx</a><span>101 KB</span></li><li><a href="belgeler/ORVEKS_Detay_Mizan_2026-06.pdf" download>ORVEKS_Detay_Mizan_2026-06.pdf</a><span>735 KB</span></li><li><a href="belgeler/ORVEKS_ERP_Disa_Aktarim_2026-06-30.xlsx" download>ORVEKS_ERP_Disa_Aktarim_2026-06-30.xlsx</a><span>428 KB</span></li><li><a href="belgeler/ORVEKS_MES_Disa_Aktarim_2026-06-30.xlsx" download>ORVEKS_MES_Disa_Aktarim_2026-06-30.xlsx</a><span>188 KB</span></li><li><a href="belgeler/ORVEKS_Muhasebe_Yevmiye_Mizan_2026-H1.xlsx" download>ORVEKS_Muhasebe_Yevmiye_Mizan_2026-H1.xlsx</a><span>407 KB</span></li></ul></div>
-</div></section>
-
-<section class="blok" id="nasil"><div class="w">
- <h2>Nasıl çalışıyoruz</h2>
- <p class="alt">Elinizde yalnız mizan varsa A yolu, sistemleriniz varsa B yolu. İkisi de aynı sırayla ilerler.</p>
- <div class="adimlar">
-  <div class="adim"><h4>Veri talebi</h4><p>Detay mizan, yevmiye; varsa ERP, CRM, MES dışa aktarımları. Kısa bir bilgi talep listesi.</p></div>
-  <div class="adim"><h4>Mutabakat</h4><p>Önce kayıtların birbirini tuttuğunu kanıtlarız. Tutmayan her fark bir fişe veya kayda bağlanır.</p></div>
-  <div class="adim"><h4>Analiz ve rapor</h4><p>Bulgular, kök nedenler, parasal etki. Yönetime sunum ve seslendirmeli özet video.</p></div>
-  <div class="adim"><h4>Çözüm ve kurulum</h4><p>Süreç, kadro, yetki düzeni; gerekirse Odoo ile ERP + MRP + MES + CRM kurulumu ve takip panosu.</p></div>
- </div>
 </div></section>
 
 <footer><div class="w">
